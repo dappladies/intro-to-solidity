@@ -1,11 +1,26 @@
 +++
-title = "Intro To Solidity"
+title = "Intro To Solidity Part I"
 outputs = ["Reveal"]
 +++
 
 ![](./../images/dappladies/logo.png)
 
-Building a community of female developers in the blockchain space by providing educational opportunities for learn smart contract development.
+Building a community of female developers in the blockchain space by providing educational opportunities to learn smart contract development.
+
+---
+
+![](./../images/dappladies/springlabs.png)
+
+Thank you to Springlabs for sponsoring our event this evening!
+
+---
+
+### Agenda
+- Introductions
+- A bit of history
+- Blockchain basics
+- Ethereum
+- Smart Contract code
 
 ---
 
@@ -21,11 +36,13 @@ In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Pee
 
 ---
 
-A blockchain is a time-stamped series of immutable record of data that is managed by a cluster of computers not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. You can think of this block chain as a ledger, which can be shared and accessed by anyone with the appropriate permissions.
+A blockchain is a time-stamped series of immutable records of data that is managed by a cluster of computers not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. You can think of this blockchain as a ledger, which can be shared and accessed by anyone with the appropriate permissions.
 
 ---
 
 # Key Points
+![](./../images/dappladies/decentralized.png)
+
 - Distributed
 - Decentralized
 - Immutable
@@ -60,7 +77,7 @@ In the years following the bitcoin white paper, we have a few exchanges go up, w
 
 ---
 
-## Why Ethereum?
+# Ethereum
 - Allows you to build applications that could run globally without any central authority
 - Optimized for software developers!
 
@@ -90,14 +107,14 @@ Vitalik liked the idea of sending digital currency to one another, but he though
 ![](./../images/EVM.png)
 
 {{% note %}}
+One big computer: made up of small computers all over the world.
 Ethereum Virtual Machine: runtime environment that executes all of the smart contracts on the network
-One big computer: made up of small computers all over
 {{% /note %}}
 
 ---
 
 ## Traditional Web App Architecture
-- insert picture
+![](./../images/traditionalArchitecture.png)
 
 {{% note %}}
 Almost everyone is familiar with this type of architecture. Web app is deployed on a server somewhere, and users who want to interact with that web app access the server.
@@ -105,12 +122,11 @@ Almost everyone is familiar with this type of architecture. Web app is deployed 
 
 ---
 
-## Decentralized Ethereum Application
-- insert picture
+![](./../images/dappArchitecture.png)
 
 {{% note %}}
-Ethereum Virtual Machine: runtime environment that executes all of the smart contracts on the network
-One big computer: made up of small computers all over
+every client (browser) communicates with its own instance of the application. There is no central server.
+To make sure all the nodes in the network have same copy of the data and to insure no invalid data gets written to this database, Ethereum uses an algorithm called Proof of Work to secure the network.
 {{% /note %}}
 
 ---
@@ -290,7 +306,7 @@ contract MyContract {
 ```
 contract MyContract {
   // owned by a user
-  address public owner;
+  address public user;
 
   // owned by a smart contract
   address public smartContract;
@@ -347,16 +363,31 @@ msg.value
 ---
 
 ## Storage vs Memory
-
+Storage- variables stored permanently to the blockchain
+Memory- variables that are temporary and erased between external function calls
 
 {{% note %}}
-
+Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of functions) are by default storage and written permanently to the blockchain, while variables declared inside functions are memory and will disappear when the function call ends.
 {{% /note %}}
 
 ---
 
 ## Functions
 
+```
+contract MyContract {
+
+  uint public userAge;
+  string public userName;
+
+  function addUser(string _name, uint _age) {
+    userAge = _age;
+    userName = _name;
+  }
+
+  addUser("Kseniya", 33);
+}
+```
 
 {{% note %}}
 
@@ -365,7 +396,23 @@ msg.value
 ---
 
 ## Public vs Private
+Public- anyone or any contract can call your contract's function
+Private- only you or a function in your contract can call the function
 
+```
+contract MyContract {
+
+  uint private userAge;
+  string private userName;
+
+  function _addUser(string _name, uint _age) private {
+    userAge = _age;
+    userName = _name;
+  }
+
+  addUser("Kseniya", 33);
+}
+```
 
 {{% note %}}
 
@@ -374,8 +421,26 @@ msg.value
 ---
 
 ## Return Values
+```
+contract MyContract {
 
+  uint public userAge;
+  string public userName;
 
+  function addUser(string _name, uint _age) {
+    userAge = _age;
+    userName = _name;
+  }
+  
+  function getAge() public returns (uint) {
+    return userAge;
+  }
+
+  addUser("Kseniya", 33);
+  // returns 33;
+  getAge();
+}
+```
 {{% note %}}
 
 {{% /note %}}
@@ -384,15 +449,50 @@ msg.value
 
 ## Modifiers
 
+```
+contract MyContract {
 
-{{% note %}}
+  uint public userAge;
+  string public userName;
 
-{{% /note %}}
+  function addUser(string _name, uint _age) {
+    userAge = _age;
+    userName = _name;
+  }
+  
+  function getAge() public returns (uint) {
+    return userAge;
+  }
+
+  function _multiply(uint a, uint b) private pure returns (uint) {
+    return a * b;
+  }
+
+  addUser("Kseniya", 33);
+}
+```
 
 ---
 
 ## Events
+Events are a way for your contract to communicate that happened on the blockchain to your front-end, which can be listening for events and take action when they happen. 
 
+```
+contract MyContract {
+  event UserAdded(string _name, uint _age);
+
+  uint public userAge;
+  string public userName;
+
+  function addUser(string _name, uint _age) {
+    userAge = _age;
+    userName = _name;
+    emit UserAdded( _name, _age)
+  }
+
+  addUser("Kseniya", 33);
+}
+```
 
 {{% note %}}
 
@@ -401,7 +501,27 @@ msg.value
 ---
 
 ## Require
+```
+contract MyContract {
 
+  uint public userAge;
+  string public userName;
+  address public userAddress;
+
+  // userAddress to boolean
+  mapping (address => bool) public userExists;
+
+  function addUser(string _name, uint _age) {
+    require(userExists[msg.sender] == false);
+    userAge = _age;
+    userName = _name;
+    userAddress = msg.sender;
+    userExists[msg.sender] = true;
+  }
+
+  addUser("Kseniya", 33);
+}
+```
 
 {{% note %}}
 
@@ -410,7 +530,30 @@ msg.value
 ---
 
 ## Inheritance
+Inheritance can be used for logical inheritance (sublass) or for organizing your code to group similar logic.
 
+```
+contract Ownable {
+
+  address public owner;
+
+  function setOwner() public {
+    owner = msg.sender;
+  }
+}
+
+contract MyContract is Ownable {
+
+  uint public userAge;
+  uint public userName;
+  
+  function addUser(string _name, uint _age) public {
+    userAge = _age;
+    userName = _name;
+  }
+}
+
+```
 
 {{% note %}}
 
@@ -418,29 +561,67 @@ msg.value
 
 ---
 
-## Internal vs Private
+## Internal vs External
+`private, public, internal, external`
 
+**Internal**- the same as private, except it's also accessible to contract that inherit from this contract.
+
+**External**- similar to public, except these functions can ONLY be called outside the contract.
 
 {{% note %}}
-
+For declaring internal or external functions, the syntax is the same as private and public
 {{% /note %}}
 
 ---
 
-## Payable
+## Internal vs External
 
+```
+contract Ownable {
 
-{{% note %}}
+  address public owner;
 
-{{% /note %}}
+  function setOwner() internal {
+    owner = msg.sender;
+  }
+}
+
+contract MyContract is Ownable {
+
+  uint public userAge;
+  uint public userName;
+  
+  function addUser(string _name, uint _age) public {
+    userAge = _age;
+    userName = _name;
+  }
+  // we can call this function
+  setOwner();
+}
+
+```
 
 ---
 
 ## Resources
 
-{{% note %}}
+https://cryptozombies.io/en/course
 
-{{% /note %}}
+https://www.zastrin.com
+
+---
+
+## Next Class
+
+We will be building a Payment DApp!
+
+---
+
+## Homework
+
+https://cryptozombies.io/en/course
+
+https://www.zastrin.com
 
 ---
 
