@@ -127,16 +127,16 @@ body {
   word-wrap: break-word; }
 
 .reveal h1 {
-  font-size: 2.0em; }
-
-.reveal h2 {
   font-size: 1.8em; }
 
+.reveal h2 {
+  font-size: 1.6em; }
+
 .reveal h3 {
-  font-size: 1.7em; }
+  font-size: 1.4em; }
 
 .reveal h4 {
-  font-size: 1.4em; }
+  font-size: 1.2em; }
 
 .reveal h1 {
   text-shadow: none; }
@@ -338,3 +338,8 @@ body {
 .reveal .progress {
   z-index: 1000;
   color: #F96167; }
+
+.reveal .source {
+  font-size: 8px;
+  margin-top: 0px;
+}

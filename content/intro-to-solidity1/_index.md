@@ -1,13 +1,17 @@
-+++
-title = "Intro To Solidity Part I"
-outputs = ["Reveal"]
-+++
+--- 
+draft: false
+title:  "Intro To Solidity Part I"
+outputs: ["Reveal"]
+---
 
-![](./../images/dappladies/logo.png)
+# Welcome!
+Intro To Solidity Part I
 
-Building a community of female developers in the blockchain space by providing educational opportunities to learn smart contract development.
+![](./../images/solidity.png)
 
 ---
+
+## Our Sponsor
 
 ![](./../images/dappladies/springlabs.png)
 
@@ -24,8 +28,10 @@ Thank you to Springlabs for sponsoring our event this evening!
 
 ---
 
-# Intro To Solidity Part I
-![](./../images/solidity.png)
+### DAppLadies Team
+- Kseniya Lifanova
+- Swati
+- Shanee
 
 ---
 
@@ -42,6 +48,7 @@ A blockchain is a time-stamped series of immutable records of data that is manag
 
 # Key Points
 ![](./../images/dappladies/decentralized.png)
+<p class="source">http://pages.cs.wisc.edu/~akella/CS740/F08/740-Papers/Bar64.pdf</p>
 
 - Distributed
 - Decentralized
@@ -52,17 +59,6 @@ A blockchain is a time-stamped series of immutable records of data that is manag
 - Decentralized: no single one point where a decision is being made
 - Distributed: the processing is shared across multiple nodes, but decisions can still be centralized
 {{% /note %}}
-
----
-
-<section data-noprocess>
-  <h1>Why does it matter?</h1>
-  <img src="./../images/earth.jpg" />
-  <aside class="notes">
-    “There are 2 billion people who have no bank accounts at all. There are another 4 billion people who have very limited access to banking. ​ Banking without international currencies, banking without international markets, banking without liquidity. Bitcoin isn’t about the 1 billion. Bitcoin is all about the other 6 1/2. The people who are currently cut off from international banking. What do you think happens when you suddenly are able to turn a simple text-messaging phone in the middle of a rural area in Nigeria, connected to a solar panel, into a bank terminal? Into a Western Union remittance terminal? ​Into an international loan-origination system? A stock market? An IPO engine? At first, nothing, but give it a few years.” 
-    ― Andreas M. Antonopoulos, The Internet of Money
-</aside>
-</section>
 
 ---
 
@@ -628,7 +624,5 @@ https://www.zastrin.com
 ## Sources
 - https://medium.com/coinmonks/ethereum-test-networks-69a5463789be
 
-
----
 
 

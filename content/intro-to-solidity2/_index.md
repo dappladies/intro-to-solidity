@@ -1,7 +1,8 @@
-+++
-title = "Intro To Solidity Part II"
-outputs = ["Reveal"]
-+++
+--- 
+draft: true
+title:  "Intro To Solidity Part II"
+outputs: ["Reveal"]
+---
 
 ![](./../images/dappladies/logo.png)
 
@@ -9,7 +10,7 @@ Building a community of female developers in the blockchain space by providing e
 
 ---
 
-# Intro To Solidity Part I
+# Intro To Solidity Part II
 ![](./../images/solidity.png)
 
 ---
