@@ -30,23 +30,24 @@ Thank you to Springlabs for sponsoring our event this evening!
 
 ### DAppLadies Team
 - Kseniya Lifanova
-- Swati
-- Shanee
+- Swati Mazumder
+- Shanee Dinay
 
 ---
 
-# Satoshi Nakamoto
+### Satoshi Nakamoto
 ![](./../images/mystery-person.png)
 
 In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Peer-to-Peer Electonic Cash System](https://bitcoin.org/bitcoin.pdf). This laid the groundwork for the bitcoin protocol and the first blockchain database.
 
 ---
 
+### Blockchain
 A blockchain is a time-stamped series of immutable records of data that is managed by a cluster of computers not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. You can think of this blockchain as a ledger, which can be shared and accessed by anyone with the appropriate permissions.
 
 ---
 
-# Key Points
+### Key Points
 ![](./../images/dappladies/decentralized.png)
 <p class="source">http://pages.cs.wisc.edu/~akella/CS740/F08/740-Papers/Bar64.pdf</p>
 
@@ -62,7 +63,7 @@ A blockchain is a time-stamped series of immutable records of data that is manag
 
 ---
 
-# Ethereum
+### Ethereum
 - Vitalik Buterin
 - January 2014- Ethereum white paper released
 - A new blockchain with a more general scripting lanuage
@@ -73,7 +74,7 @@ In the years following the bitcoin white paper, we have a few exchanges go up, w
 
 ---
 
-# Ethereum
+### Ethereum
 - Allows you to build applications that could run globally without any central authority
 - Optimized for software developers!
 
@@ -83,7 +84,7 @@ Vitalik liked the idea of sending digital currency to one another, but he though
 
 ---
 
-## Applications
+### Applications
 - financial applications
 - semi-financial applications
 - non financial applications
@@ -96,7 +97,7 @@ Vitalik liked the idea of sending digital currency to one another, but he though
 
 ---
 
-## EVM
+### EVM
 - Ethereum Virtual Machine
 - One big computer
 
@@ -109,7 +110,7 @@ Ethereum Virtual Machine: runtime environment that executes all of the smart con
 
 ---
 
-## Traditional Web App Architecture
+### Traditional Web App Architecture
 ![](./../images/traditionalArchitecture.png)
 
 {{% note %}}
@@ -118,6 +119,7 @@ Almost everyone is familiar with this type of architecture. Web app is deployed 
 
 ---
 
+### Decentralized App Architecture
 ![](./../images/dappArchitecture.png)
 
 {{% note %}}
@@ -127,7 +129,7 @@ To make sure all the nodes in the network have same copy of the data and to insu
 
 ---
 
-## Smart Contracts
+### Smart Contracts
 - applications that can be deployed on the Ethereum blockchain
 - written in Solidity
 - compiled into EVM bytecode
@@ -138,7 +140,7 @@ To make sure all the nodes in the network have same copy of the data and to insu
 
 ---
 
-## Tools
+### Tools
 - Remix
 - Truffle Suite
 - Parity
@@ -152,26 +154,26 @@ To make sure all the nodes in the network have same copy of the data and to insu
 
 ---
 
-## Remix
+### Remix
 A browser-based compiler and IDE that enables users to build Ethereum contracts with Solidity language and to debug transactions.
 
 https://remix.ethereum.org
 
 ---
 
-## Truffle Suite
-- Truffle: a development environment, testing framework and asset pipeline for blockchains using the EVM
-- Ganache: a personal blockchain for Ethereum developers to deploy contracts, develop apps, and run tests
-- Drizzle: a collection of front-end libraries that make writing dapp front-ends easier
+### Truffle Suite
+- **Truffle**: a development environment, testing framework and asset pipeline for blockchains using the EVM
+- **Ganache**: a personal blockchain for Ethereum developers to deploy contracts, develop apps, and run tests
+- **Drizzle**: a collection of front-end libraries that make writing dapp front-ends easier
 
 https://truffleframework.com/
 
 ---
 
-## Test Networks
-- Ropsten- the one that most resembles the main network, uses Proof of Work consensus algorithm 
-- Rinkeby- uses Proof of Authority consensus algorithm, you need to prove your existence in order to retrieve ethers
-- Kovan- uses same consensus algorithm as Rinkeby
+### Test Networks
+- **Ropsten**: the one that most resembles the main network, uses Proof of Work consensus algorithm 
+- **Rinkeby**: uses Proof of Authority consensus algorithm, you need to prove your existence in order to retrieve ethers
+- **Kovan**: uses same consensus algorithm as Rinkeby
 
 {{% note %}}
 Test networks exist to ease development and provide developers and companies an easy solution to deliver their product on networks that are not exchanging real value but providing the exact same service.
@@ -179,7 +181,7 @@ Test networks exist to ease development and provide developers and companies an 
 
 ---
 
-## Parity and Geth
+### Parity and Geth
 - Both are Ethereum clients
 - Full nodes that are capable of mining and signing transactions
 - Parity written in Rust
@@ -194,7 +196,9 @@ https://geth.ethereum.org/downloads/
 
 ---
 
-## MetaMask
+### MetaMask
+![](./../images/metamask.png)
+
 MetaMask is a browser plugin that allows users to make Ethereum transactions through regular websites. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node. 
 
 {{% note %}}
@@ -203,7 +207,7 @@ MetaMask is a browser plugin that allows users to make Ethereum transactions thr
 
 ---
 
-## Let's Look at some code
+### Let's Look at some code
 ![](./../images/dappladies/code.png)
 {{% note %}}
 
@@ -211,7 +215,7 @@ MetaMask is a browser plugin that allows users to make Ethereum transactions thr
 
 ---
 
-## Contracts
+### Contracts
 - Solidity's code is encapsulated in contracts
 - all variables and functions belong to a contract
 - compiled into EVM bytecode
@@ -226,7 +230,7 @@ contract MyContract {
 
 ---
 
-## State Variables
+### State Variables
 State variables are permanently stored in contract storage. This means they are written to the Ethereum blockchain.
 
 ```
@@ -240,7 +244,7 @@ contract MyContract {
 
 ---
 
-## State Variables
+### State Variables
 Integers, structs, bools
 
 ```
@@ -261,7 +265,7 @@ contract MyContract {
 
 ---
 
-## State Variables
+### State Variables
 Arrays
 
 ```
@@ -289,7 +293,7 @@ contract MyContract {
 
 ---
 
-## State Variables: Address
+### State Variables: Address
 
 - Ethereum blockchain is made up of accounts
 - Each account has an address
@@ -313,12 +317,12 @@ contract MyContract {
 ```
 
 {{% note %}}
-  Think of accounts like bank accounts. An account has a balance of Ether, and you can send and receive Ether payments o other accounts.
+  Think of accounts like bank accounts. An account has a balance of Ether, and you can send and receive Ether payments to other accounts.
 {{% /note %}}
 
 ---
 
-## State Variables: Mappings
+### State Variables: Mappings
 
 - A way of storing organized data in Solidity
 - A mapping is essentially a key-value store for storing and looking up data
@@ -344,7 +348,7 @@ contract MyContract {
 
 ---
 
-## Global Variables
+### Global Variables
 There are certain global variables that are available to all functions
 
 ```
@@ -358,9 +362,9 @@ msg.value
 
 ---
 
-## Storage vs Memory
-Storage- variables stored permanently to the blockchain
-Memory- variables that are temporary and erased between external function calls
+### Storage vs Memory
+**Storage**: variables stored permanently to the blockchain
+**Memory**: variables that are temporary and erased between external function calls
 
 {{% note %}}
 Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of functions) are by default storage and written permanently to the blockchain, while variables declared inside functions are memory and will disappear when the function call ends.
@@ -368,7 +372,7 @@ Most of the time you don't need to use these keywords because Solidity handles t
 
 ---
 
-## Functions
+### Functions
 
 ```
 contract MyContract {
@@ -391,9 +395,9 @@ contract MyContract {
 
 ---
 
-## Public vs Private
-Public- anyone or any contract can call your contract's function
-Private- only you or a function in your contract can call the function
+### Public vs Private
+**Public**: anyone or any contract can call your contract's function
+**Private**: only you or a function in your contract can call the function
 
 ```
 contract MyContract {
@@ -416,7 +420,7 @@ contract MyContract {
 
 ---
 
-## Return Values
+### Return Values
 ```
 contract MyContract {
 
@@ -443,7 +447,7 @@ contract MyContract {
 
 ---
 
-## Modifiers
+### Modifiers
 
 ```
 contract MyContract {
@@ -470,7 +474,7 @@ contract MyContract {
 
 ---
 
-## Events
+### Events
 Events are a way for your contract to communicate that happened on the blockchain to your front-end, which can be listening for events and take action when they happen. 
 
 ```
@@ -496,7 +500,7 @@ contract MyContract {
 
 ---
 
-## Require
+### Require
 ```
 contract MyContract {
 
@@ -525,7 +529,7 @@ contract MyContract {
 
 ---
 
-## Inheritance
+### Inheritance
 Inheritance can be used for logical inheritance (sublass) or for organizing your code to group similar logic.
 
 ```
@@ -557,7 +561,7 @@ contract MyContract is Ownable {
 
 ---
 
-## Internal vs External
+### Internal vs External
 `private, public, internal, external`
 
 **Internal**- the same as private, except it's also accessible to contract that inherit from this contract.
@@ -570,7 +574,7 @@ For declaring internal or external functions, the syntax is the same as private 
 
 ---
 
-## Internal vs External
+### Internal vs External
 
 ```
 contract Ownable {
@@ -599,25 +603,24 @@ contract MyContract is Ownable {
 
 ---
 
-## Resources
+### Resources
 
 https://cryptozombies.io/en/course
-
 https://www.zastrin.com
+[The Internet of Money](https://www.amazon.com/gp/product/B01L9WM0H8?pf_rd_p=d1f45e03-8b73-4c9a-9beb-4819111bef9a&pf_rd_r=RBT6834KKM1E19W1HZ26)
 
 ---
 
-## Next Class
+### Next Class
 
 We will be building a Payment DApp!
 
 ---
 
-## Homework
+### Homework
 
-https://cryptozombies.io/en/course
-
-https://www.zastrin.com
+- install ganache
+- install truffle
 
 ---
 
