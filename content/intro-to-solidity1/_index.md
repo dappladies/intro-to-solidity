@@ -13,32 +13,42 @@ Intro To Solidity Part I
 
 ## Our Sponsor
 
-![](./../images/dappladies/springlabs.png)
+![](./../images/dappladies/spring logo dark_new.png)
 
 Thank you to Springlabs for sponsoring our event this evening!
+
+{{% note %}}
+- Spring Labs is building a protocol which allows participants such as financial institutions and consumers to share information such as credit and indentity data wihtout need to share the underlying data itself. They are an LA based company.
+{{% /note %}}
+
 
 ---
 
 ### Agenda
 - Introductions
-- A bit of history
 - Blockchain basics
 - Ethereum
+- Dev Tools
 - Smart Contract code
 
 ---
 
-### DAppLadies Team
-- Kseniya Lifanova
-- Swati Mazumder
-- Shanee Dinay
+![](./../images/dappladies/logo.png)
+
+- **Kseniya Lifanova**: Co-founder, Partner and Software Developer at Upstate Interactive, Founder of DAppLadies
+- **Swati Mazumder**: Founder at SyncSol | Developer, Analyst, Technology Enthusiast, DAppLadies Member
+- **Shanee Dinay**: Software Engineer at Spring Labs, DAppLadies Member
 
 ---
 
 ### Satoshi Nakamoto
 ![](./../images/mystery-person.png)
 
-In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Peer-to-Peer Electonic Cash System](https://bitcoin.org/bitcoin.pdf). This laid the groundwork for the bitcoin protocol and the first blockchain database.
+In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Peer-to-Peer Electronic Cash System](https://bitcoin.org/bitcoin.pdf). This laid the groundwork for the bitcoin protocol and the first blockchain database.
+
+{{% note %}}
+- double spend problem with digital currency - the same single digital token can be spent more than once since it's a digital file that can be duplicated and falsified. 
+{{% /note %}}
 
 ---
 
@@ -57,16 +67,14 @@ A blockchain is a time-stamped series of immutable records of data that is manag
 - Transparent
 
 {{% note %}}
-- Decentralized: no single one point where a decision is being made
 - Distributed: the processing is shared across multiple nodes, but decisions can still be centralized
+- Decentralized: no single one point where a decision is being made
 {{% /note %}}
 
 ---
 
 ### Ethereum
-- Vitalik Buterin
-- January 2014- Ethereum white paper released
-- A new blockchain with a more general scripting lanuage
+![](./../images/dappladies/vitalik.jpg)
 
 {{% note %}}
 In the years following the bitcoin white paper, we have a few exchanges go up, we have a dude spend 10,000 bitcoins on a pizza, Silk Road gives crypto a bad name, Satoshi disappears, we have a few more blockchains pop up, and then, in 2014, 19 year old Vitalik Butern publishes the Ethereum white papers
@@ -75,11 +83,51 @@ In the years following the bitcoin white paper, we have a few exchanges go up, w
 ---
 
 ### Ethereum
+- A new blockchain with a more general scripting lanuage
 - Allows you to build applications that could run globally without any central authority
 - Optimized for software developers!
 
 {{% note %}}
+Bitcoin blockchain is primarily used for sending money between various parties on the blockchain without the need for a central authority such as a bank.
 Vitalik liked the idea of sending digital currency to one another, but he thought it would be even more useful to send it along with a story. "Sure, I'll send you this 1ETH, but only when you provide me with a document."
+{{% /note %}}
+
+---
+
+### EVM
+- Ethereum Virtual Machine
+- One big computer
+
+
+![](./../images/EVM.png)
+
+{{% note %}}
+At the heart of Ethereum is the EVM, Ethereum Virtuam Machine which executes all of the smart contracts on the network. 
+
+One big computer: made up of small computers all over the world.
+All these computers (also called nodes) are connected to one another and run the EVM. When you deploy your code on to the Ethereum blockchain, the code is replicated across all the nodes in the network. When your application stores any data, even that data is replicated across all the nodes. There are thousands of nodes in the network and it is almost impossible for anyone to stop all the nodes. This insures your application to be always accessible. 
+
+{{% /note %}}
+
+---
+
+### Traditional Web App Architecture
+![](./../images/traditionalArchitecture.png)
+
+{{% note %}}
+One of the best ways to understand Ethereum is by comparing it with a traditional client/server architecture.
+Almost everyone is familiar with this type of architecture. Web app is deployed on a server somewhere, and users who want to interact with that web app access the server.
+{{% /note %}}
+
+---
+
+### Decentralized App Architecture
+![](./../images/dappArchitecture.png)
+
+{{% note %}}
+every client (browser) communicates with its own instance of the application. There is no central server to which all clients connect to. Theoretically, to interact with a DApp you must have a copy of the blockchain downloaded on your computer. However, there have been many solutions in the community that allow you to hook up to the blockchain- meta mask, infura, hosted blockchain servers. 
+2 main components of the Ethereum blockchain are the database and the code. Database: Every transaction in the network is stored in the blockchain. When you deploy your application, it is considered as a transaction. If you have for example a Voting application that allows anyone to vote for candidates, a vote for a candidate would be considered a transaction. 
+Code: In Ethereum world, you write the logic/application code (called contract) in a language called Solidity. You then use the solidity compiler to compile it to Ethereum Byte Code and then deploy that byte code to the blockchain (There are few other languages you could use to write contracts but solidity is by far the most popular and relatively easier option). So, not only does Ethereum blockchain store the transactions, it also stores and executes the contract code.
 {{% /note %}}
 
 ---
@@ -90,6 +138,7 @@ Vitalik liked the idea of sending digital currency to one another, but he though
 - non financial applications
 
 {{% note %}}
+Because Ethereum is a programmable blockchain, you can build all different types of applications.
 - financial applications: sub currencies, financial derivatives, savings wallets
 - semi-financial applications: money involved, but also a heavy non-monetary side to what is being done
 - non financial applications: online voting, decentralized governance
@@ -97,42 +146,27 @@ Vitalik liked the idea of sending digital currency to one another, but he though
 
 ---
 
-### EVM
-- Ethereum Virtual Machine
-- One big computer
-
-![](./../images/EVM.png)
-
-{{% note %}}
-One big computer: made up of small computers all over the world.
-Ethereum Virtual Machine: runtime environment that executes all of the smart contracts on the network
-{{% /note %}}
-
----
-
-### Traditional Web App Architecture
-![](./../images/traditionalArchitecture.png)
-
-{{% note %}}
-Almost everyone is familiar with this type of architecture. Web app is deployed on a server somewhere, and users who want to interact with that web app access the server.
-{{% /note %}}
-
----
-
-### Decentralized App Architecture
-![](./../images/dappArchitecture.png)
-
-{{% note %}}
-every client (browser) communicates with its own instance of the application. There is no central server.
-To make sure all the nodes in the network have same copy of the data and to insure no invalid data gets written to this database, Ethereum uses an algorithm called Proof of Work to secure the network.
-{{% /note %}}
-
----
-
 ### Smart Contracts
+![](./../images/dappladies/smart-contract.jpg)
+
 - applications that can be deployed on the Ethereum blockchain
 - written in Solidity
 - compiled into EVM bytecode
+
+{{% note %}}
+In Ethereum, we can write applications in the Solidity programming language and deploy it on to the Ethereum blockchain. These applications are called Smart Contracts.
+
+In general, contract is a written agreement between two or many parties that is intended to be enforced by law. If we take this written contract and translate it in to code and deploy on the blockchain, we get digital contracts.
+{{% /note %}}
+
+---
+
+### Solidity
+![](./../images/dappladies/solidity.png)
+
+- object oriented programming language used to write smart contracts
+- influenced by C++, Python and Javascript
+- easy to learn for programmers
 
 {{% note %}}
 
@@ -159,6 +193,10 @@ A browser-based compiler and IDE that enables users to build Ethereum contracts 
 
 https://remix.ethereum.org
 
+{{% note %}}
+Not only can you use it to as an editor but it can be used to compile and deploy your contracts to various networks and interact with them directly from the IDE. It has many features to select various compiler versions, debug your contracts and so on
+{{% /note %}}
+
 ---
 
 ### Truffle Suite
@@ -167,6 +205,11 @@ https://remix.ethereum.org
 - **Drizzle**: a collection of front-end libraries that make writing dapp front-ends easier
 
 https://truffleframework.com/
+
+{{% note %}}
+Truffle is one of the most popular frameworks used to develop dapps. They abstract away lot of the complexities of compiling and deploying your contract on the blockchain. It also has an in-built testing framework you can use to test your contracts. 
+Ganahce- in-memory blockchain
+{{% /note %}}
 
 ---
 
@@ -192,6 +235,7 @@ https://geth.ethereum.org/downloads/
 
 {{% note %}}
   The Ethereum protocol defines how the Ethereum network works, how clients should generally operate, and rules everyone must follow to be a valid part of the network. This protocol is written generally such that anyone could go and implement their own version of the protocol into a custom Ethereum client.
+  When you install and start the geth, parity or any other client, the EVM is started and it starts syncing, validating and executing transactions. 
 {{% /note %}}
 
 ---
@@ -208,7 +252,7 @@ MetaMask is a browser plugin that allows users to make Ethereum transactions thr
 ---
 
 ### Let's Look at some code
-![](./../images/dappladies/code.png)
+![](./../images/dappladies/token.png)
 {{% note %}}
 
 {{% /note %}}
@@ -238,28 +282,16 @@ pragma solidity ^0.5.0;
 
 contract MyContract {
   uint value = 100;
-
-}
-```
-
----
-
-### State Variables
-Integers, structs, bools
-
-```
-pragma solidity ^0.5.0;
-
-contract MyContract {
-  uint value = 100;
   int value = -100;
 
   struct Person {
       uint age;
       string name;
+      bool verified;
     }
   
   bool exists;
+
 }
 ```
 
@@ -284,9 +316,6 @@ contract MyContract {
 
   // Dynamic array of People structs;
   Person[] peopleArray;
-
-  // public array;
-  Person[] public peopleArray;
 
 }
 ```
@@ -354,6 +383,27 @@ There are certain global variables that are available to all functions
 ```
 msg.sender
 msg.value
+```
+
+```
+contract MyContract {
+
+  // store / lookup to see if an address has voted
+  mapping (address => bool) voted;
+
+  function vote(string _candidate) {
+    // code
+    voted[msg.sender] = true;
+  }
+
+  // For a financial app, storing a uint that holds the user's account balance:
+  mapping (address => uint) public accountBalance;
+
+  function sendFunds(address _to) {
+    accountBalance[_to] = _accountBalance[to].add(msg.value);
+  }
+
+}
 ```
 
 {{% note %}}
@@ -448,7 +498,7 @@ contract MyContract {
 ---
 
 ### Modifiers
-
+Modifier are like a prerequisites check of the function
 ```
 contract MyContract {
 
@@ -460,12 +510,16 @@ contract MyContract {
     userName = _name;
   }
   
-  function getAge() public returns (uint) {
+  function getAge() public view returns (uint) {
     return userAge;
   }
 
   function _multiply(uint a, uint b) private pure returns (uint) {
     return a * b;
+  }
+
+  function getAge() public onlyOwner returns (uint) {
+    return userAge;
   }
 
   addUser("Kseniya", 33);
@@ -475,7 +529,7 @@ contract MyContract {
 ---
 
 ### Events
-Events are a way for your contract to communicate that happened on the blockchain to your front-end, which can be listening for events and take action when they happen. 
+Events are a way for your contract to communicate what happened on the blockchain to your front-end, which can be listening for events and take action when they happen. 
 
 ```
 contract MyContract {
@@ -530,7 +584,7 @@ contract MyContract {
 ---
 
 ### Inheritance
-Inheritance can be used for logical inheritance (sublass) or for organizing your code to group similar logic.
+Inheritance can be used for logical inheritance (subclass) or for organizing your code to group similar logic.
 
 ```
 contract Ownable {
@@ -603,11 +657,31 @@ contract MyContract is Ownable {
 
 ---
 
+![](./../images/meme.jpg)
+
+---
+
+### Why does it matter?
+![](./../images/earth.jpg)
+
+{{% note %}}
+There are 2 billion people who have no bank accounts at all. There are another 4 billion people who have very limited access to banking. ​ Banking without international currencies, banking without international markets, banking without liquidity. Bitcoin isn’t about the 1 billion. Bitcoin is all about the other 6 1/2. The people who are currently cut off from international banking. What do you think happens when you suddenly are able to turn a simple text-messaging phone in the middle of a rural area in Nigeria, connected to a solar panel, into a bank terminal? Into a Western Union remittance terminal? ​Into an international loan-origination system? A stock market? An IPO engine? At first, nothing, but give it a few years
+    ― Andreas M. Antonopoulos, The Internet of Money
+{{% /note %}}
+
+---
+
 ### Resources
 
-https://cryptozombies.io/en/course
-https://www.zastrin.com
+[CryptoZombies](https://cryptozombies.io/en/course)
+
+[Zastrin](https://www.zastrin.com)
+
+[Solidity Docs](https://solidity.readthedocs.io/en/v0.5.6/)
+
 [The Internet of Money](https://www.amazon.com/gp/product/B01L9WM0H8?pf_rd_p=d1f45e03-8b73-4c9a-9beb-4819111bef9a&pf_rd_r=RBT6834KKM1E19W1HZ26)
+
+[Upstate Interactive Medium](https://medium.com/upstate-interactive)
 
 ---
 
@@ -619,13 +693,17 @@ We will be building a Payment DApp!
 
 ### Homework
 
-- install ganache
+- install ganache-cli
 - install truffle
+- install openzeppelin
+- install Solidity extension for text editor
 
 ---
 
-## Sources
+### Sources
 - https://medium.com/coinmonks/ethereum-test-networks-69a5463789be
+- https://blockgeeks.com/guides/what-is-blockchain-technology/
+- https://cryptozombies.io/en/course
 
 
 
