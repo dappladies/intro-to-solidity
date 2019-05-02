@@ -35,9 +35,10 @@ Thank you to Springlabs for sponsoring our event this evening!
 
 ![](./../images/dappladies/logo.png)
 
-- **Kseniya Lifanova**: Co-founder, Partner and Software Developer at Upstate Interactive, Founder of DAppLadies
-- **Swati Mazumder**: Founder at SyncSol | Developer, Analyst, Technology Enthusiast, DAppLadies Member
-- **Shanee Dinay**: Software Engineer at Spring Labs, DAppLadies Member
+
+- <a href="https://www.linkedin.com/in/kseniya-lifanova-aa50b19/" target="_blank">Kseniya Lifanova</a>: Co-founder, Partner and Software Developer at Upstate Interactive, Founder of DAppLadies
+- <a href="https://www.linkedin.com/in/swati-mazumder-015783b/" target="_blank">Swati Mazumder</a>: Founder at SyncSol | Developer, Analyst, Technology Enthusiast, DAppLadies Member
+- <a href="https://www.linkedin.com/in/sdinay/" target="_blank">Shanee Dinay</a>: Software Engineer at Spring Labs, DAppLadies Member
 
 ---
 
@@ -244,6 +245,8 @@ https://geth.ethereum.org/downloads/
 ![](./../images/metamask.png)
 
 MetaMask is a browser plugin that allows users to make Ethereum transactions through regular websites. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node. 
+
+https://metamask.io/
 
 {{% note %}}
 
@@ -692,11 +695,20 @@ We will be building a Payment DApp!
 ---
 
 ### Homework
+Make sure you have [node](https://nodejs.org/en/download/current/) installed.
 
-- install ganache-cli
-- install truffle
-- install openzeppelin
-- install Solidity extension for text editor
+Install a Solidity extension for your text editor:
+
+- [Link for VSCode](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) 
+- [Link for Sublime](https://packagecontrol.io/packages/Ethereum)
+
+`npm install -g truffle`
+
+`npm install -g ganache-cli`
+
+`npm install openzeppelin-solidity`
+
+
 
 ---
 
