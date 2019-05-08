@@ -10,5 +10,7 @@ Building a community of female developers in the blockchain space by providing e
 
 <a href="https://www.meetup.com/DApp-Ladies" target ="_blank">Meetup Page</a>
 
-[Intro to Solidity Slides Part 1](/intro-to-solidity1)
+[Intro to Solidity Slides Part I](/intro-to-solidity1)
+
+[Intro to Solidity Slides Part II](/intro-to-solidity2)
 

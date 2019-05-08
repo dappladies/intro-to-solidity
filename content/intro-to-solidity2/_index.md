@@ -1,610 +1,182 @@
 --- 
-draft: true
+draft: false
 title:  "Intro To Solidity Part II"
 outputs: ["Reveal"]
 ---
 
-![](./../images/dappladies/logo.png)
+# Welcome!
+Intro To Solidity Part II
 
-Building a community of female developers in the blockchain space by providing educational opportunities to learn smart contract development.
-
----
-
-# Intro To Solidity Part II
 ![](./../images/solidity.png)
 
 ---
 
-# Satoshi Nakamoto
-![](./../images/mystery-person.png)
+## Our Sponsor
 
-In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Peer-to-Peer Electonic Cash System](https://bitcoin.org/bitcoin.pdf). This laid the groundwork for the bitcoin protocol and the first blockchain database.
+![](./../images/dappladies/spring logo dark_new.png)
 
----
-
-A blockchain is a time-stamped series of immutable records of data that is managed by a cluster of computers not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. You can think of this blockchain as a ledger, which can be shared and accessed by anyone with the appropriate permissions.
-
----
-
-# Key Points
-![](./../images/dappladies/decentralized.png)
-
-- Distributed
-- Decentralized
-- Immutable
-- Transparent
+Thank you to Springlabs for sponsoring our event this evening!
 
 {{% note %}}
-- Decentralized: no single one point where a decision is being made
-- Distributed: the processing is shared across multiple nodes, but decisions can still be centralized
+- Spring Labs is building a protocol which allows participants such as financial institutions and consumers to share information such as credit and indentity data wihtout need to share the underlying data itself. They are an LA based company.
 {{% /note %}}
 
----
-
-<section data-noprocess>
-  <h1>Why does it matter?</h1>
-  <img src="./../images/earth.jpg" />
-  <aside class="notes">
-    “There are 2 billion people who have no bank accounts at all. There are another 4 billion people who have very limited access to banking. ​ Banking without international currencies, banking without international markets, banking without liquidity. Bitcoin isn’t about the 1 billion. Bitcoin is all about the other 6 1/2. The people who are currently cut off from international banking. What do you think happens when you suddenly are able to turn a simple text-messaging phone in the middle of a rural area in Nigeria, connected to a solar panel, into a bank terminal? Into a Western Union remittance terminal? ​Into an international loan-origination system? A stock market? An IPO engine? At first, nothing, but give it a few years.” 
-    ― Andreas M. Antonopoulos, The Internet of Money
-</aside>
-</section>
 
 ---
 
-# Ethereum
-- Vitalik Buterin
-- January 2014- Ethereum white paper released
-- A new blockchain with a more general scripting lanuage
+### Payment App
+Today we will be building a payment application! This app will be able to:
 
-{{% note %}}
-In the years following the bitcoin white paper, we have a few exchanges go up, we have a dude spend 10,000 bitcoins on a pizza, Silk Road gives crypto a bad name, Satoshi disappears, we have a few more blockchains pop up, and then, in 2014, 19 year old Vitalik Butern publishes the Ethereum white papers
-{{% /note %}}
-
----
-
-## Why Ethereum?
-- Allows you to build applications that could run globally without any central authority
-- Optimized for software developers!
-
-{{% note %}}
-Vitalik liked the idea of sending digital currency to one another, but he thought it would be even more useful to send it along with a story. "Sure, I'll send you this 1ETH, but only when you provide me with a document."
-{{% /note %}}
+- create users
+- allows users to add friends
+- allow users to create events
+- allow users to join events
+- allow event participants to add funds
+- split and distribute refunds at the end of the event.
 
 ---
 
-## Applications
-- financial applications
-- semi-financial applications
-- non financial applications
+### Dev Environemnt
+Make sure you have [node](https://nodejs.org/en/download/current/) installed.
 
-{{% note %}}
-- financial applications: sub currencies, financial derivatives, savings wallets
-- semi-financial applications: money involved, but also a heavy non-monetary side to what is being done
-- non financial applications: online voting, decentralized governance
-{{% /note %}}
+Install a Solidity extension for your text editor:
 
----
+- [Link for VSCode](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity) 
+- [Link for Sublime](https://packagecontrol.io/packages/Ethereum)
 
-## EVM
-- Ethereum Virtual Machine
-- One big computer
+`npm install -g truffle`
 
-![](./../images/EVM.png)
+`npm install -g ganache-cli`
 
-{{% note %}}
-One big computer: made up of small computers all over the world.
-Ethereum Virtual Machine: runtime environment that executes all of the smart contracts on the network
-{{% /note %}}
+`npm install openzeppelin-solidity`
+
+`npm install web3`
 
 ---
 
-## Traditional Web App Architecture
-![](./../images/traditionalArchitecture.png)
+### Create folder 
 
-{{% note %}}
-Almost everyone is familiar with this type of architecture. Web app is deployed on a server somewhere, and users who want to interact with that web app access the server.
-{{% /note %}}
+`mkdir paymentApp`
 
----
+`cd paymentApp`
 
-![](./../images/dappArchitecture.png)
+`truffle init`
 
-{{% note %}}
-every client (browser) communicates with its own instance of the application. There is no central server.
-To make sure all the nodes in the network have same copy of the data and to insure no invalid data gets written to this database, Ethereum uses an algorithm called Proof of Work to secure the network.
-{{% /note %}}
+`cd contracts`
+
+`touch UserFactory.sol`
 
 ---
 
-## Smart Contracts
-- applications that can be deployed on the Ethereum blockchain
-- written in Solidity
-- compiled into EVM bytecode
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Tools
-- Remix
-- Truffle Suite
-- Parity
-- Geth
-- Test networks
-- MetaMask
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Remix
-A browser-based compiler and IDE that enables users to build Ethereum contracts with Solidity language and to debug transactions.
-
-https://remix.ethereum.org
-
----
-
-## Truffle Suite
-- Truffle: a development environment, testing framework and asset pipeline for blockchains using the EVM
-- Ganache: a personal blockchain for Ethereum developers to deploy contracts, develop apps, and run tests
-- Drizzle: a collection of front-end libraries that make writing dapp front-ends easier
-
-https://truffleframework.com/
-
----
-
-## Test Networks
-- Ropsten- the one that most resembles the main network, uses Proof of Work consensus algorithm 
-- Rinkeby- uses Proof of Authority consensus algorithm, you need to prove your existence in order to retrieve ethers
-- Kovan- uses same consensus algorithm as Rinkeby
-
-{{% note %}}
-Test networks exist to ease development and provide developers and companies an easy solution to deliver their product on networks that are not exchanging real value but providing the exact same service.
-{{% /note %}}
-
----
-
-## Parity and Geth
-- Both are Ethereum clients
-- Full nodes that are capable of mining and signing transactions
-- Parity written in Rust
-- Geth written in Go
-
-https://www.parity.io/ethereum/
-https://geth.ethereum.org/downloads/
-
-{{% note %}}
-  The Ethereum protocol defines how the Ethereum network works, how clients should generally operate, and rules everyone must follow to be a valid part of the network. This protocol is written generally such that anyone could go and implement their own version of the protocol into a custom Ethereum client.
-{{% /note %}}
-
----
-
-## MetaMask
-MetaMask is a browser plugin that allows users to make Ethereum transactions through regular websites. It allows you to run Ethereum dApps right in your browser without running a full Ethereum node. 
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Let's Look at some code
-![](./../images/dappladies/code.png)
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Contracts
-- Solidity's code is encapsulated in contracts
-- all variables and functions belong to a contract
-- compiled into EVM bytecode
+### Create folder 
 
 ```
-pragma solidity ^0.5.0;
+pragma solidity >=0.4.0 <0.6.0;
 
-contract MyContract {
+contract UserFactory  {
 
-}
-```
-
----
-
-## State Variables
-State variables are permanently stored in contract storage. This means they are written to the Ethereum blockchain.
-
-```
-pragma solidity ^0.5.0;
-
-contract MyContract {
-  uint value = 100;
-
-}
-```
-
----
-
-## State Variables
-Integers, structs, bools
-
-```
-pragma solidity ^0.5.0;
-
-contract MyContract {
-  uint value = 100;
-  int value = -100;
-
-  struct Person {
-      uint age;
-      string name;
-    }
-  
-  bool exists;
-}
-```
-
----
-
-## State Variables
-Arrays
-
-```
-pragma solidity ^0.5.0;
-
-contract MyContract {
-
-  // Array with a fixed length;
-  uint[2] fixedArray;
-
-  // Dynamic array of integers;
-  uint[] dynamicArray;
-
-  // Dynamic array or strings;
-  string[] stringArray;
-
-  // Dynamic array of People structs;
-  Person[] peopleArray;
-
-  // public array;
-  Person[] public peopleArray;
-
-}
-```
-
----
-
-## State Variables: Address
-
-- Ethereum blockchain is made up of accounts
-- Each account has an address
-- An account can be owned by a specific user or smart contract
-
-```
-0x0cE446255506E92DF41614C46F1d6df9Cc969183
-```
-
-```
-contract MyContract {
-  // owned by a user
-  address public user;
-
-  // owned by a smart contract
-  address public smartContract;
-
-  // array of addresses
-  address[] public players;
-}
-```
-
-{{% note %}}
-  Think of accounts like bank accounts. An account has a balance of Ether, and you can send and receive Ether payments o other accounts.
-{{% /note %}}
-
----
-
-## State Variables: Mappings
-
-- A way of storing organized data in Solidity
-- A mapping is essentially a key-value store for storing and looking up data
-
-```
-contract MyContract {
-
-  // For a financial app, storing a uint that holds the user's account balance:
-  mapping (address => uint) public accountBalance;
-  
-  // store / lookup usernames based on userId
-  mapping (uint => string) userIdToName;
-
-  // store / lookup to see if an address has voted
-  mapping (address => bool) voted;
-
-}
-```
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Global Variables
-There are certain global variables that are available to all functions
-
-```
-msg.sender
-msg.value
-```
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Storage vs Memory
-Storage- variables stored permanently to the blockchain
-Memory- variables that are temporary and erased between external function calls
-
-{{% note %}}
-Most of the time you don't need to use these keywords because Solidity handles them by default. State variables (variables declared outside of functions) are by default storage and written permanently to the blockchain, while variables declared inside functions are memory and will disappear when the function call ends.
-{{% /note %}}
-
----
-
-## Functions
-
-```
-contract MyContract {
-
-  uint public userAge;
-  string public userName;
-
-  function addUser(string _name, uint _age) {
-    userAge = _age;
-    userName = _name;
+  struct User {
+    string userName;
+    address[] friends;
   }
 
-  addUser("Kseniya", 33);
+  // dynamic array of all user addresses
+  address[] public userAddresses;
+
+  // map an address to their User struct
+  mapping (address => User) public userStruct;
+
+  // mapping of an user address to boolean
+  mapping (address => bool) public isUser;
+
+  // map of users to friends
+  mapping (address => address) public userToFriend;
+
+  constructor() public {}
+
+  function createUser(string memory _name) public {
+    // add user address to array
+    userAddresses.push(msg.sender);
+
+    // set userName
+    userStruct[msg.sender].userName = _name;
+
+    // set isUser mapping to true
+    isUser[msg.sender] = true;
+  }
 }
 ```
 
+---
+
+### Inside the folder 
+
+- contracts/ hold the Solidity files (or Vyper)
+- migrations/ hold migration files that are used to deploy smart contracts to the blockchain
+- test/ folder is where you put your unit tests
+- truffle-config.js is a config file where you connect to an Ethereum network
+
 {{% note %}}
+We are importing the MyContract Solidity file and using a deployer object provided by Truffle to deploy said contract onto a blockchain.
+
+Contracts are developed within the contracts folder, before being migrated onto a blockchain, and then tested using Truffle’s automated testing capabilities. 
+
+By default Truffle Develop runs on localhost:9545 whereas Ganache runs on localhost:8545.
 
 {{% /note %}}
 
 ---
 
-## Public vs Private
-Public- anyone or any contract can call your contract's function
-Private- only you or a function in your contract can call the function
+### Inside the folder 
+
+Add a file called `2_deploy_contracts.js` to migrations folder
 
 ```
-contract MyContract {
+const UserFactory = artifacts.require("./UserFactory.sol");
 
-  uint private userAge;
-  string private userName;
-
-  function _addUser(string _name, uint _age) private {
-    userAge = _age;
-    userName = _name;
-  }
-
-  addUser("Kseniya", 33);
-}
+module.exports = function(deployer) {
+  deployer.deploy(UserFactory);
+};
 ```
 
 {{% note %}}
-
+The very first migration 1_initial_migration.js deploys a contract named Migrations to the blockchain and is used to store the latest contract you have deployed. Every time you run the migration, truffle queries the blockchain to get the last contract that has been deployed and then deploys any contracts which haven’t been deployed yet. It then updates the last_completed_migration field in the Migrations contract to indicate the latest contract deployed. You can simply think of it as a database table called Migration with a column named last_completed_migration which is kept up to date always. You can find more details on the truffle documentation page.
 {{% /note %}}
 
 ---
 
-## Return Values
-```
-contract MyContract {
+### Next
 
-  uint public userAge;
-  string public userName;
-
-  function addUser(string _name, uint _age) {
-    userAge = _age;
-    userName = _name;
-  }
-  
-  function getAge() public returns (uint) {
-    return userAge;
-  }
-
-  addUser("Kseniya", 33);
-  // returns 33;
-  getAge();
-}
-```
-{{% note %}}
-
-{{% /note %}}
+- `truffle migrate`
+- `truffle console`
+- `web3.eth.getAccounts()`
+- `web3.eth.getBalance(address)`
+- `web3.utils.fromWei('100000000000000000000', 'ether')`
+- `UserFactory.address`
 
 ---
 
-## Modifiers
+### Let's add some functions!
 
-```
-contract MyContract {
+- `addFriends`
+- `getMyFriends`
+- `createEvent`
+- `joinEvent`
+- `getEventParticipants`
+- `addFundsToEvent`
+- `endEvent`
+- `_distributeFunds`
 
-  uint public userAge;
-  string public userName;
 
-  function addUser(string _name, uint _age) {
-    userAge = _age;
-    userName = _name;
-  }
-  
-  function getAge() public returns (uint) {
-    return userAge;
-  }
-
-  function _multiply(uint a, uint b) private pure returns (uint) {
-    return a * b;
-  }
-
-  addUser("Kseniya", 33);
-}
-```
 
 ---
 
-## Events
-Events are a way for your contract to communicate that happened on the blockchain to your front-end, which can be listening for events and take action when they happen. 
+### Sources
+- https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2
+- https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#eth-contract
+- https://truffleframework.com/docs/truffle/reference/truffle-commands
+- https://cryptozombies.io/en/course
+- https://medium.com/@rossbulat/introduction-to-the-truffle-suite-and-dapp-development-pipeline-1b33bb8228d4
 
-```
-contract MyContract {
-  event UserAdded(string _name, uint _age);
-
-  uint public userAge;
-  string public userName;
-
-  function addUser(string _name, uint _age) {
-    userAge = _age;
-    userName = _name;
-    emit UserAdded( _name, _age)
-  }
-
-  addUser("Kseniya", 33);
-}
-```
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Require
-```
-contract MyContract {
-
-  uint public userAge;
-  string public userName;
-  address public userAddress;
-
-  // userAddress to boolean
-  mapping (address => bool) public userExists;
-
-  function addUser(string _name, uint _age) {
-    require(userExists[msg.sender] == false);
-    userAge = _age;
-    userName = _name;
-    userAddress = msg.sender;
-    userExists[msg.sender] = true;
-  }
-
-  addUser("Kseniya", 33);
-}
-```
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Inheritance
-Inheritance can be used for logical inheritance (sublass) or for organizing your code to group similar logic.
-
-```
-contract Ownable {
-
-  address public owner;
-
-  function setOwner() public {
-    owner = msg.sender;
-  }
-}
-
-contract MyContract is Ownable {
-
-  uint public userAge;
-  uint public userName;
-  
-  function addUser(string _name, uint _age) public {
-    userAge = _age;
-    userName = _name;
-  }
-}
-
-```
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Internal vs External
-`private, public, internal, external`
-
-**Internal**- the same as private, except it's also accessible to contract that inherit from this contract.
-
-**External**- similar to public, except these functions can ONLY be called outside the contract.
-
-{{% note %}}
-For declaring internal or external functions, the syntax is the same as private and public
-{{% /note %}}
-
----
-
-## Internal vs External
-
-```
-contract Ownable {
-
-  address public owner;
-
-  function setOwner() internal {
-    owner = msg.sender;
-  }
-}
-
-contract MyContract is Ownable {
-
-  uint public userAge;
-  uint public userName;
-  
-  function addUser(string _name, uint _age) public {
-    userAge = _age;
-    userName = _name;
-  }
-  // we can call this function
-  setOwner();
-}
-
-```
-
----
-
-## Resources
-
-https://cryptozombies.io/en/course
-
-https://www.zastrin.com
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
-## Sources
-- https://medium.com/coinmonks/ethereum-test-networks-69a5463789be
-
-
----
 
 
