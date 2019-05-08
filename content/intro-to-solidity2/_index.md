@@ -149,10 +149,19 @@ The very first migration 1_initial_migration.js deploys a contract named Migrati
 
 - `truffle migrate`
 - `truffle console`
+- `UserFactory`
+
+- bytecode: smart contract source code is compiled into bytecode and then deployed to the blockchain
+- abi: an interface of the smart contract which describes what methors are available in the contract
+
+---
+
+### More commands
+
+- `UserFactory.address`
 - `web3.eth.getAccounts()`
 - `web3.eth.getBalance(address)`
 - `web3.utils.fromWei('100000000000000000000', 'ether')`
-- `UserFactory.address`
 
 ---
 
@@ -165,7 +174,7 @@ The very first migration 1_initial_migration.js deploys a contract named Migrati
 - `getEventParticipants`
 - `addFundsToEvent`
 - `endEvent`
-- `_distributeFunds`
+- `_calculateSplit`
 
 
 
