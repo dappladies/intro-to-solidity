@@ -26,6 +26,7 @@ Thank you to Springlabs for sponsoring our event this evening!
 
 ### Payment App
 Today we will continue to work on our PaymentApp. 
+https://github.com/dappladies/paymentApp
 
 Functions:
 
