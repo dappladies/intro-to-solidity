@@ -14,3 +14,4 @@ Building a community of female developers in the blockchain space by providing e
 
 [Intro to Solidity Slides Part II](/intro-to-solidity2)
 
+[Intro to Solidity Slides Part III](/intro-to-solidity3)
