@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Intro To Solidity Part III</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/robot-lung.css" id="theme"><link rel="stylesheet" href="/highlight-js/default.min.css">
+    
+  </head>
+  <body>
+    <div class="reveal">
+        <div class="line top"></div>
+        <div class="line bottom"></div>
+        <div class="line left"></div>
+        <div class="line right"></div>
+      <div class="slides">
+  
+<section>
+
+<h1 id="welcome">Welcome!</h1>
+
+<p>Intro To Solidity Workshop (Part III)</p>
+
+<p><img src="./../images/solidity.png" alt="" /></p>
+
+</section><section>
+
+<h2 id="our-sponsor">Our Sponsor</h2>
+
+<p><img src="./../images/dappladies/spring logo dark_new.png" alt="" /></p>
+
+<p>Thank you to Springlabs for sponsoring our event this evening!</p>
+
+<aside class="notes"><ul>
+<li>Spring Labs is building a protocol which allows participants such as financial institutions and consumers to share information such as credit and indentity data wihtout need to share the underlying data itself. They are an LA based company.</li>
+</ul>
+</aside>
+
+</section><section>
+
+<h3 id="payment-app">Payment App</h3>
+
+<p>Today we will continue to work on our PaymentApp.
+<a href="https://github.com/dappladies/paymentApp">https://github.com/dappladies/paymentApp</a></p>
+
+<p>Functions:</p>
+
+<pre><code>createUser
+addFriend
+getMyFriends
+createEvent
+getEventInfo
+joinEvent
+getEventParticipants
+addFundsToEvent
+endEvent
+withdraw
+deposit
+_isEventParticipant
+_calculateSplit
+</code></pre>
+
+</section><section>
+
+<h3 id="review-developer-tools">Review: Developer Tools</h3>
+
+<ul>
+<li><strong>Truffle</strong>: a development environment, testing framework and asset pipeline for blockchains using the EVM</li>
+<li><strong>Ganache</strong>: a personal blockchain for Ethereum developers to deploy contracts, develop apps, and run tests</li>
+<li><strong>Remix</strong>: A browser-based compiler and IDE that enables users to build Ethereum contracts with Solidity language and to debug transactions.</li>
+<li><strong>Parity &amp; Geth</strong>: Ethereum clients that are capable of mining and signing transactions</li>
+<li><strong>Test networks</strong>: Ropsten, Rinkeby, Kovan</li>
+<li><strong>MetaMask:</strong> a browser plugin that allows users to make Ethereum transactions through regular websites</li>
+</ul>
+
+</section><section>
+
+<h3 id="review-global-state-variables">Review: Global &amp; State Variables</h3>
+
+<pre><code>pragma solidity &gt;=0.4.0 &lt;0.6.0;
+
+contract UserFactory  {
+
+  struct User {
+    string userName;
+    address[] friends;
+    uint256 numOfFriends;
+  }
+
+  address[] public userAddresses;
+
+  mapping (address =&gt; User) public userStruct;
+  mapping (address =&gt; bool) public isUser;
+
+  constructor() public {}
+
+  function createUser(string memory _name) public {
+    // add user address to array
+    userAddresses.push(msg.sender);
+
+    // set userName
+    userStruct[msg.sender].userName = _name;
+
+    // set isUser mapping to true
+    isUser[msg.sender] = true;
+  }
+}
+</code></pre>
+
+</section><section>
+
+<h3 id="review-public-vs-private-vs-internal-vs-external">Review: Public vs Private vs Internal vs External</h3>
+
+<p><strong>Public</strong>: anyone or any contract can call your contract&rsquo;s function</p>
+
+<p><strong>Private</strong>: only you or a function in your contract can call the function</p>
+
+<p><strong>Internal</strong>: the same as private, except it&rsquo;s also accessible to contract that inherit from this contract.</p>
+
+<p><strong>External</strong>: similar to public, except these functions can ONLY be called outside the contract.</p>
+
+</section><section>
+
+<h3 id="payable-and-transfer">Payable and Transfer</h3>
+
+<ul>
+<li>to send ether to a smart contract, you need a no name function called a fallback function</li>
+</ul>
+
+<p><code>function() payable {}</code></p>
+
+<ul>
+<li><p>Or, you can add the payable modifier to a function that you want to call as well as send value to.</p></li>
+
+<li><p>the <code>transfer()</code> function transfers eth to an address</p></li>
+</ul>
+
+<p><code>address.transfer(amount)</code></p>
+
+</section><section>
+
+<h3 id="testing">Testing</h3>
+
+<ul>
+<li>testing in the terminal</li>
+<li>writing unit tests</li>
+<li>using remix-ide and web3</li>
+</ul>
+
+</section><section>
+
+<h3 id="let-s-code">Let&rsquo;s Code!</h3>
+
+</section><section>
+
+<h3 id="sources">Sources</h3>
+
+<ul>
+<li><a href="https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2">https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2</a></li>
+<li><a href="https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#eth-contract">https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#eth-contract</a></li>
+<li><a href="https://truffleframework.com/docs/truffle/reference/truffle-commands">https://truffleframework.com/docs/truffle/reference/truffle-commands</a></li>
+<li><a href="https://cryptozombies.io/en/course">https://cryptozombies.io/en/course</a></li>
+<li><a href="https://medium.com/@rossbulat/introduction-to-the-truffle-suite-and-dapp-development-pipeline-1b33bb8228d4">https://medium.com/@rossbulat/introduction-to-the-truffle-suite-and-dapp-development-pipeline-1b33bb8228d4</a></li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"/robot-lung.css"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/lib/js/head.min.js"></script>
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+<script type="text/javascript" src="/reveal-js/lib/js/classList.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+<script type="text/javascript">
+if (hljs)
+  hljs.initHighlightingOnLoad();
+</script>
+    
+    
+  </body>
+</html>

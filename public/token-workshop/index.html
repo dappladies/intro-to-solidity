@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Token Workshop</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/robot-lung.css" id="theme"><link rel="stylesheet" href="/highlight-js/default.min.css">
+    
+  </head>
+  <body>
+    <div class="reveal">
+        <div class="line top"></div>
+        <div class="line bottom"></div>
+        <div class="line left"></div>
+        <div class="line right"></div>
+      <div class="slides">
+  
+<section>
+
+<h1 id="welcome">Welcome!</h1>
+
+<p>Solidity Workshop: ERC20 &amp; ERC721 Token Workshop</p>
+
+<p><img src="./../images/solidity.png" alt="" /></p>
+
+</section><section>
+
+<h2 id="our-sponsor">Our Sponsor</h2>
+
+<p><img src="./../images/dappladies/spring logo dark_new.png" alt="" /></p>
+
+<p>Thank you to Springlabs for sponsoring our event this evening!</p>
+
+<aside class="notes"><ul>
+<li>Spring Labs is building a protocol which allows participants such as financial institutions and consumers to share information such as credit and indentity data wihtout need to share the underlying data itself. They are an LA based company.</li>
+</ul>
+</aside>
+
+</section><section>
+
+<h3 id="agenda">Agenda</h3>
+
+<ul>
+<li>Build and deploy your own ERC20 Token</li>
+<li>Build and deploy your own ERC721 Token</li>
+<li>Send tokens to each other</li>
+<li>Build an ERC1155 token</li>
+</ul>
+
+</section><section>
+
+<h3 id="tokens">Tokens</h3>
+
+<ul>
+<li>Tokens are digital assets that are built on top of the Ethereum blockchain</li>
+<li>They are a representation of something on the blockchain</li>
+<li>Examples: money, physical objects such as cars, services, shares in a company, a virtual pet</li>
+</ul>
+
+<aside class="notes"><p>You can compare the Ethereum platform and the tokens built on top of it as the App Store providing a platform for iOS apps, where you could build an app with some digital currency used within the game.</p>
+</aside>
+
+</section><section>
+
+<h3 id="token-contracts">Token Contracts</h3>
+
+<ul>
+<li>A token contract is simply an Ethereum smart contract</li>
+<li>Sending tokens actually means “calling a function on a smart contract that someone wrote and deployed”</li>
+<li>Token contracts have mappings that map user addresses to their balance</li>
+</ul>
+
+<aside class="notes"><p>It is these balances that represent the tokens themselves. Someone &ldquo;has tokens&rdquo; when their balance in the token contract is non-zero. That’s it!</p>
+</aside>
+
+</section><section>
+
+<h3 id="kinds-of-tokens">Kinds of Tokens</h3>
+
+<ul>
+<li>The major difference between tokens is fungibility</li>
+<li>Fungible tokens vs nonfungible tokens</li>
+<li>Tokens that are fungibile are equivalent and interchangeable</li>
+</ul>
+
+<p><img src="./../images/dappladies/dollar.jpg" alt="" /></p>
+
+<aside class="notes"><p>Fungible goods are equivalent and interchangeable, like Ether, fiat currencies, and voting rights.</p>
+</aside>
+
+</section><section>
+
+<h3 id="kinds-of-tokens-1">Kinds of Tokens</h3>
+
+<ul>
+<li>Tokens that are non-fungible are tokens that contain a unique characteristics</li>
+<li>No 2 tokens are the same</li>
+</ul>
+
+<p><img src="./../images/dappladies/cryptokitty.png" alt="" /></p>
+
+<aside class="notes"><p>In a nutshell, when dealing with non-fungibles (like your house) you care about which ones you have, while in fungible assets (like your bank account statement) what matters is how much you have.</p>
+</aside>
+
+</section><section>
+
+<h3 id="standards">Standards</h3>
+
+<ul>
+<li>The community has developed a variety of standards (EIPs or ERCs) that developers can use when creating their own tokens</li>
+<li>by using standards, tokens can be compatible with other platforms like cryptocurreny exchanges</li>
+<li>ERC20 is a standard interface for fungible tokens</li>
+<li>ERC721 is a standard interface for nonfungible tokens</li>
+</ul>
+
+<p><a href="https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts">https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts</a></p>
+
+<aside class="notes"><p>EIP stands for Ethereum Improvement Proposal
+ERC - application-level standards and conventions, including contract standards such as token standards</p>
+</aside>
+
+</section><section>
+
+<h3 id="let-s-code">Let&rsquo;s Code!</h3>
+
+<ul>
+<li>MetaMask</li>
+
+<li><p><a href="https://faucet.ropsten.be/">https://faucet.ropsten.be/</a></p></li>
+
+<li><p><code>mkdir token_workshop</code></p></li>
+
+<li><p><code>cd token_workshop</code></p></li>
+
+<li><p><code>truffle unbox</code></p></li>
+
+<li><p><code>npm init</code></p></li>
+
+<li><p><code>npm install @openzeppelin/contracts</code></p></li>
+
+<li><p><code>npm install truffle-flattener</code></p></li>
+</ul>
+
+</section><section>
+
+<h3 id="sources">Sources</h3>
+
+<ul>
+<li><a href="https://blockgeeks.com/guides/ethereum-token/">https://blockgeeks.com/guides/ethereum-token/</a></li>
+<li><a href="https://docs.openzeppelin.com/contracts/2.x/tokens">https://docs.openzeppelin.com/contracts/2.x/tokens</a></li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"/robot-lung.css"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/lib/js/head.min.js"></script>
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+<script type="text/javascript" src="/reveal-js/lib/js/classList.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+<script type="text/javascript">
+if (hljs)
+  hljs.initHighlightingOnLoad();
+</script>
+    
+    
+  </body>
+</html>
