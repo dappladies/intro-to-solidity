@@ -116,6 +116,3 @@ ERC - application-level standards and conventions, including contract standards 
 ### Sources
 - https://blockgeeks.com/guides/ethereum-token/
 - https://docs.openzeppelin.com/contracts/2.x/tokens
-
-
-

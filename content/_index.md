@@ -17,3 +17,5 @@ outputs: ["Reveal"]
 [Intro to Tokens](/intro-to-tokens)
 
 [Token Workshop](/token-workshop)
+
+[Ethereum Infrastructure](/ethereum-infrastructure)
