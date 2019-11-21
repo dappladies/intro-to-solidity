@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>Intro To Solidity Part II</title>
+
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="/reveal-js/css/reveal.css"><link rel="stylesheet" href="/robot-lung.css" id="theme"><link rel="stylesheet" href="/highlight-js/default.min.css">
+    
+  </head>
+  <body>
+    <div class="reveal">
+        <div class="line top"></div>
+        <div class="line bottom"></div>
+        <div class="line left"></div>
+        <div class="line right"></div>
+      <div class="slides">
+  
+<section>
+
+<h1 id="welcome">Welcome!</h1>
+
+<p>Intro To Solidity Part II</p>
+
+<p><img src="./../images/solidity.png" alt="" /></p>
+
+</section><section>
+
+<h2 id="our-sponsor">Our Sponsor</h2>
+
+<p><img src="./../images/dappladies/spring logo dark_new.png" alt="" /></p>
+
+<p>Thank you to Springlabs for sponsoring our event this evening!</p>
+
+<aside class="notes"><ul>
+<li>Spring Labs is building a protocol which allows participants such as financial institutions and consumers to share information such as credit and indentity data wihtout need to share the underlying data itself. They are an LA based company.</li>
+</ul>
+</aside>
+
+</section><section>
+
+<h3 id="payment-app">Payment App</h3>
+
+<p>Today we will be building a payment application! This app will be able to:</p>
+
+<ul>
+<li>create users</li>
+<li>allows users to add friends</li>
+<li>allow users to create events</li>
+<li>allow users to join events</li>
+<li>allow event participants to add funds</li>
+<li>split and distribute refunds at the end of the event.</li>
+</ul>
+
+</section><section>
+
+<h3 id="dev-environemnt">Dev Environemnt</h3>
+
+<p>Make sure you have <a href="https://nodejs.org/en/download/current/">node</a> installed.</p>
+
+<p>Install a Solidity extension for your text editor:</p>
+
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity">Link for VSCode</a></li>
+<li><a href="https://packagecontrol.io/packages/Ethereum">Link for Sublime</a></li>
+</ul>
+
+<p><code>npm install -g truffle</code></p>
+
+<p><code>npm install -g ganache-cli</code></p>
+
+<p><code>npm install openzeppelin-solidity</code></p>
+
+<p><code>npm install web3</code></p>
+
+</section><section>
+
+<h3 id="create-folder">Create folder</h3>
+
+<p><code>mkdir paymentApp</code></p>
+
+<p><code>cd paymentApp</code></p>
+
+<p><code>truffle init</code></p>
+
+<p><code>cd contracts</code></p>
+
+<p><code>touch UserFactory.sol</code></p>
+
+</section><section>
+
+<h3 id="create-folder-1">Create folder</h3>
+
+<pre><code>pragma solidity &gt;=0.4.0 &lt;0.6.0;
+
+contract UserFactory  {
+
+  struct User {
+    string userName;
+    address[] friends;
+  }
+
+  // dynamic array of all user addresses
+  address[] public userAddresses;
+
+  // map an address to their User struct
+  mapping (address =&gt; User) public userStruct;
+
+  // mapping of an user address to boolean
+  mapping (address =&gt; bool) public isUser;
+
+  // map of users to friends
+  mapping (address =&gt; address) public userToFriend;
+
+  constructor() public {}
+
+  function createUser(string memory _name) public {
+    // add user address to array
+    userAddresses.push(msg.sender);
+
+    // set userName
+    userStruct[msg.sender].userName = _name;
+
+    // set isUser mapping to true
+    isUser[msg.sender] = true;
+  }
+}
+</code></pre>
+
+</section><section>
+
+<h3 id="inside-the-folder">Inside the folder</h3>
+
+<ul>
+<li>contracts/ hold the Solidity files (or Vyper)</li>
+<li>migrations/ hold migration files that are used to deploy smart contracts to the blockchain</li>
+<li>test/ folder is where you put your unit tests</li>
+<li>truffle-config.js is a config file where you connect to an Ethereum network</li>
+</ul>
+
+<aside class="notes"><p>We are importing the MyContract Solidity file and using a deployer object provided by Truffle to deploy said contract onto a blockchain.</p>
+
+<p>Contracts are developed within the contracts folder, before being migrated onto a blockchain, and then tested using Truffle’s automated testing capabilities.</p>
+
+<p>By default Truffle Develop runs on localhost:9545 whereas Ganache runs on localhost:8545.</p>
+</aside>
+
+</section><section>
+
+<h3 id="inside-the-folder-1">Inside the folder</h3>
+
+<p>Add a file called <code>2_deploy_contracts.js</code> to migrations folder</p>
+
+<pre><code>const UserFactory = artifacts.require(&quot;./UserFactory.sol&quot;);
+
+module.exports = function(deployer) {
+  deployer.deploy(UserFactory);
+};
+</code></pre>
+
+<aside class="notes"><p>The very first migration 1_initial_migration.js deploys a contract named Migrations to the blockchain and is used to store the latest contract you have deployed. Every time you run the migration, truffle queries the blockchain to get the last contract that has been deployed and then deploys any contracts which haven’t been deployed yet. It then updates the last_completed_migration field in the Migrations contract to indicate the latest contract deployed. You can simply think of it as a database table called Migration with a column named last_completed_migration which is kept up to date always. You can find more details on the truffle documentation page.</p>
+</aside>
+
+</section><section>
+
+<h3 id="next">Next</h3>
+
+<ul>
+<li><code>truffle migrate</code></li>
+<li><code>truffle console</code></li>
+
+<li><p><code>UserFactory</code></p></li>
+
+<li><p>bytecode: smart contract source code is compiled into bytecode and then deployed to the blockchain</p></li>
+
+<li><p>abi: an interface of the smart contract which describes what methors are available in the contract</p></li>
+</ul>
+
+</section><section>
+
+<h3 id="more-commands">More commands</h3>
+
+<ul>
+<li><code>UserFactory.address</code></li>
+<li><code>web3.eth.getAccounts()</code></li>
+<li><code>web3.eth.getBalance(address)</code></li>
+<li><code>web3.utils.fromWei('100000000000000000000', 'ether')</code></li>
+</ul>
+
+</section><section>
+
+<h3 id="let-s-add-some-functions">Let&rsquo;s add some functions!</h3>
+
+<ul>
+<li><code>addFriends</code></li>
+<li><code>getMyFriends</code></li>
+<li><code>createEvent</code></li>
+<li><code>joinEvent</code></li>
+<li><code>getEventParticipants</code></li>
+<li><code>addFundsToEvent</code></li>
+<li><code>endEvent</code></li>
+<li><code>_calculateSplit</code></li>
+</ul>
+
+</section><section>
+
+<h3 id="sources">Sources</h3>
+
+<ul>
+<li><a href="https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2">https://medium.com/@mvmurthy/full-stack-hello-world-voting-ethereum-dapp-tutorial-part-1-40d2d0d807c2</a></li>
+<li><a href="https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#eth-contract">https://web3js.readthedocs.io/en/1.0/web3-eth-contract.html#eth-contract</a></li>
+<li><a href="https://truffleframework.com/docs/truffle/reference/truffle-commands">https://truffleframework.com/docs/truffle/reference/truffle-commands</a></li>
+<li><a href="https://cryptozombies.io/en/course">https://cryptozombies.io/en/course</a></li>
+<li><a href="https://medium.com/@rossbulat/introduction-to-the-truffle-suite-and-dapp-development-pipeline-1b33bb8228d4">https://medium.com/@rossbulat/introduction-to-the-truffle-suite-and-dapp-development-pipeline-1b33bb8228d4</a></li>
+</ul>
+</section>
+
+  
+
+
+</div>
+      
+
+    </div>
+<script type="text/javascript" src=/reveal-hugo/object-assign.js></script>
+
+<a href="/reveal-js/css/print/" id="print-location" style="display: none;"></a>
+<script type="text/javascript">
+  var printLocationElement = document.getElementById('print-location');
+  var link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.type = 'text/css';
+  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
+  document.getElementsByTagName('head')[0].appendChild(link);
+</script>
+
+<script type="application/json" id="reveal-hugo-site-params">{"custom_theme":"/robot-lung.css"}</script>
+<script type="application/json" id="reveal-hugo-page-params">null</script>
+
+<script src="/reveal-js/lib/js/head.min.js"></script>
+<script src="/reveal-js/js/reveal.js"></script>
+
+<script type="text/javascript">
+  
+  
+  function camelize(map) {
+    if (map) {
+      Object.keys(map).forEach(function(k) {
+        newK = k.replace(/(\_\w)/g, function(m) { return m[1].toUpperCase() });
+        if (newK != k) {
+          map[newK] = map[k];
+          delete map[k];
+        }
+      });
+    }
+    return map;
+  }
+  
+  var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
+  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  
+  var options = Object.assign({},
+    camelize(revealHugoDefaults),
+    camelize(revealHugoSiteParams),
+    camelize(revealHugoPageParams));
+  Reveal.initialize(options);
+</script>
+
+<script type="text/javascript" src="/reveal-js/lib/js/classList.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/marked.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/markdown/markdown.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/highlight/highlight.js"></script>
+
+<script type="text/javascript" src="/reveal-js/plugin/zoom-js/zoom.js"></script>
+
+
+<script type="text/javascript" src="/reveal-js/plugin/notes/notes.js"></script>
+
+
+
+<script type="text/javascript">
+if (hljs)
+  hljs.initHighlightingOnLoad();
+</script>
+    
+    
+  </body>
+</html>
