@@ -334,6 +334,110 @@ geth --keystore ~/EthereumInfrastructure/private/keystore \
 
 ---
 
+### Start the Ethereum Node in the Background
+
+```
+nohup geth --keystore ~/EthereumInfrastructure/private/keystore \
+  --networkid 1234 \
+  --unlock YOUR_ADDRESS \
+  --password ~/EthereumInfrastructure/private/keystore/.passphrase \
+  --datadir ~/EthereumInfrastructure/private/ \
+  --cache 1024 \
+  --port "30303" \
+  --rpc \
+  --rpcport 8545 \
+  --rpcaddr "0.0.0.0" \
+  --rpcvhosts "*" \
+  --rpccorsdomain "*" \
+  --targetgaslimit '800000000' \
+  --allow-insecure-unlock &
+```
+
+---
+
+### Interact with geth via the console
+
+```
+$ geth attach geth.ipc
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
+coinbase: 0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb
+at block: 0 (Sun, 17 Nov 2019 23:50:19 PST)
+ datadir: /Users/sdinay/Documents/git/ethereum_infrastructure/private
+ modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+> web3.eth.coinbase
+"0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb"
+
+> web3.eth.getBalance(web3.eth.coinbase)
+9.04625697166532776746648320380374280103671755200316906558262375061821325312e+74
+
+> web3.eth.accounts
+["0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb"]
+
+> web3.eth.sendTransaction({ from: web3.eth.coinbase, to: "0xe3322a8497c8157177affe0f6b8f2fb09d402e65",  value: web3.toWei(10000000, "ether")}
+
+> web3.eth.getTransactionReceipt(hash [, callback])
+
+> web3.eth.blockNumber
+123
+
+> exit
+```
+
+---
+
+### Interact with Geth via RPC
+
+```
+curl -X GET -H "Content-Type: application/json" localhost:8545 --data '{"jsonrpc":"2.0","method":"eth_blockNumber", "params":[], "id":67 }'
+
+curl -X GET -H "Content-Type: application/json" seth-miner.staging.springlabs.network:8545 --data '{"jsonrpc":"2.0","method":"eth_blockNumber", "params":[], "id":67 }' | jq -r '.result' | xargs -n1 printf '%d\n',
+
+curl -X GET -H "Content-Type: application/json" prod-dcl-seth.springlabs.network:8545 --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount", "params":['0x4129ade4f41099236c96FEa46eA7413fE60c3B41'], "id":67 }'
+```
+
+{{% note %}}
+https://github.com/ethereum/wiki/wiki/JSON-RPC
+{{% /note %}}
+
+---
+
+### Get enode
+
+After your ethereum node has initialized
+```
+$ geth attach geth.ipc
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
+coinbase: 0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb
+at block: 0 (Sun, 17 Nov 2019 23:50:19 PST)
+ datadir: /Users/sdinay/Documents/git/ethereum_infrastructure/private
+ modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+> admin.nodeInfo.enode
+"enode://69f40ad0aa4cd732abfbce832fe9c38eab98b1d3b752a3f99b8c109b513b4c12aa97d021f6541450b0ac7a0b61e99c9350132948402bdce926887d04cd6f95f4@38.91.126.179:30303"
+```
+
+Before your ethereum node has initialized
+```
+$ geth --datadir ~/Documents/git/ethereum_infrastructure/private --keystore ~/Documents/git/ethereum_infrastructure/private/keystore --networkid 1234 --password ~/Documents/git/ethereum_infrastructure/private/keystore/.passphrase console
+
+> admin.nodeInfo.enode
+```
+
+---
+
+### Kill the geth process
+
+```
+pkill geth
+```
+
+---
+
 ### Let’s Start Our Own Chain!
 
 ---
