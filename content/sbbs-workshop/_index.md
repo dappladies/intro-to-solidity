@@ -14,18 +14,6 @@ Kseniya Lifanova
 
 ---
 
-## Thank You
-
-![](./../images/sbbs/baf.png)
-![](./../images/sbbs/bcucsb.png)
-
-{{% note %}}
-
-{{% /note %}}
-
-
----
-
 ### About Me
 - Wrote my first line of code in 2015
 - Co-founder, Partner, & Software Developer at <a href="https://www.upstateinteractive.io" target ="_blank">Upstate Interactive</a>
@@ -37,11 +25,78 @@ Kseniya Lifanova
 ---
 
 ### Agenda
-- Tokens
 - Smart Contracts
+- Tokens
 - Token Standards
 - Build and deploy your own ERC20 Token
 - Build and deploy your own ERC721 Token
+
+---
+
+![](./../images/dappladies/smart-contract.jpg)
+
+---
+
+### Smart Contracts
+
+- applications that can be deployed on a blockchain
+- written in high level languages like Solidity
+- compiled into EVM bytecode
+
+{{% note %}}
+- object oriented programming language used to write smart contracts
+- influenced by C++, Python and Javascript
+- easy to learn for programmers
+{{% /note %}}
+
+---
+
+### Smart Contracts
+- Solidity's code is encapsulated in contracts
+- all variables and functions belong to a contract
+- State variables are permanently stored in contract storage
+
+```
+pragma solidity ^0.5.0;
+
+contract MyContract {
+  uint256 value = 100;
+
+  struct Person {
+      uint age;
+      string name;
+      bool verified;
+    }
+
+  address public user;
+  address public smartContract;
+  
+  bool exists;
+
+}
+```
+
+---
+
+### Smart Contracts: Mappings
+
+- A way of storing organized data in Solidity
+- A mapping is essentially a key-value store for storing and looking up data
+
+```
+contract MyContract {
+
+  // For a financial app, storing a uint that holds the user's account balance:
+  mapping (address => uint) public accountBalance;
+  
+  // store / lookup usernames based on userId
+  mapping (uint => string) userIdToName;
+
+  // store / lookup to see if an address has voted
+  mapping (address => bool) voted;
+
+}
+```
 
 ---
 
@@ -51,7 +106,7 @@ Kseniya Lifanova
 - Examples: a store of value, physical objects such as cars, services, shares in a company, a virtual pet
 
 {{% note %}}
-You can compare the Ethereum platform and the tokens built on top of it as the App Store providing a platform for iOS apps, where you could build an app with some digital currency used within the game. 
+
 {{% /note %}}
 
 ---
@@ -93,7 +148,6 @@ Fungible goods are equivalent and interchangeable, like Ether, fiat currencies, 
 {{% note %}}
 In a nutshell, when dealing with non-fungibles (like your house) you care about which ones you have, while in fungible assets (like your bank account statement) what matters is how much you have.
 {{% /note %}}
-
 
 ---
 
@@ -144,8 +198,10 @@ ERC - application-level standards and conventions, including contract standards 
 https://github.com/OpenZeppelin/openzeppelin-contracts/tree/master/contracts/token/ERC20
 
 {{% note %}}
-Core: ERC20, - ERC20Detailed.sol
-Multiple: designation of addresses that can create token supply ({ERC20Mintable}), with an optional maximum cap ({ERC20Capped}), destruction of own tokens ({ERC20Burnable}), designation of addresses that can pause token operations for all users ({ERC20Pausable}).
+- Core: ERC20, - ERC20Detailed.sol
+- designation of addresses that can create token supply ({ERC20Mintable})
+- optional maximum cap ({ERC20Capped}), destruction of own tokens ({ERC20Burnable})
+- designation of addresses that can pause token operations for all users ({ERC20Pausable}).
 {{% /note %}}
 
 ---
@@ -266,7 +322,7 @@ function safeTransferFrom(address from, address to, uint256 tokenId, bytes memor
 ```
 
 {{% note %}}
-Another big difference is safeTransferFrom, which is a safety measure of the ERC-721 standard, more specifically, the ERC721TokenReceiver interface. It checks if the target address is a smart contract and will try to call the onERC721Received function if that’s the case. This function (if it exists) must return 0xf0b9e5ba, which is equal to bytes4(keccak256("onERC721Received(address,uint256,bytes)")). If it doesn’t return this exact value or if the function does not exist, the contract will throw an error and the transaction will be reverted. This prevents anyone from accidentally sending their NFTs to a smart contract that doesn’t support them.
+Another big difference is safeTransferFrom, which is a safety measure of the ERC-721 standard, more specifically, the ERC721TokenReceiver interface. It checks if the target address is a smart contract and will throw an error if it isnt and the transaction will be reverted. This prevents anyone from accidentally sending their NFTs to a smart contract that doesn’t support them.
 {{% /note %}}
 
 ---
@@ -405,6 +461,7 @@ truffle(develop)> instance.name()
 truffle(develop)> instance.symbol()
 truffle(develop)> instance.decimals()
 {{% /note %}}
+
 ---
 
 ### Exercise - Send Tokens
