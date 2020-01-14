@@ -195,21 +195,40 @@ Usage:
 
 ---
 
-### Download Geth from Source Code
+### Option 1: Download Geth from Source Code
 
-- get the go-ethereum source code
-- change directory into the code
-- run the make all target, this will create binary files in the `go-ethereum/build/bin/` directory
-
+- Get the go-ethereum source code
 ```bash
 git clone https://github.com/ethereum/go-ethereum.git ~/EthereumInfrastructure/
+```
 
+- Change directory into the code
+```bash
 cd ~/EthereumInfrastructure/go-ethereum
+```
 
+- Run the make all target, this will create binary files in the `go-ethereum/build/bin/` directory
+```bash
 make all
+```
 
-# Optional
+- Add the binaries directory to your path
+```bash
 export PATH="$PATH:~/EthereumInfrastructure/go-ethereum/build/bin/"
+```
+
+---
+
+### Option 2: Download the Geth Pre-Built Binary
+
+- Navigate to the geth downloads website
+https://geth.ethereum.org/downloads/
+
+- Under **Stable releases**, choose the most recent version of **Geth & Tools 1.9.9**. Download the file to your downloads folder.
+
+- After you unzip the tarball, add the binaries directory to your path
+```bash
+export PATH="$PATH:~/Downloads/geth-alltools-darwin-amd64-1.9.9-01744997/"
 ```
 
 ---
@@ -223,7 +242,7 @@ cat /dev/urandom | env LC_CTYPE=C tr -dc a-zA-Z0-9 | head -c 24 > ~/EthereumInfr
 
 Generate an ethereum account
 ```bash
-~/EthereumInfrastructure/go-ethereum/build/cmd/geth --datadir ~/EthereumInfrastructure/private account new --password ~/EthereumInfrastructure/private/keystore/.passphrase
+geth --datadir ~/EthereumInfrastructure/private account new --password ~/EthereumInfrastructure/private/keystore/.passphrase
 ```
 
 ---
@@ -358,15 +377,26 @@ INFO [11-17|23:59:42.875] Saved genesis chain spec                 client=harmon
 }
 ```
 
+{{% note %}}
+- chainId is a way to tell Ethereum chains apart (ETH and ETC both have a network ID of 1 but a chainID of 1 and 61, respectively)
+- 4 required values are config, difficulty, gasLimit, alloc
+- config: The blockchain configuration
+- chainId: protection of the replay attack(an unauthorized user acting as the original sender)
+- homesteadBlock: Homestead is the second major release of Ethereum(the first release is Frontier). The value 0 means that you are using this release
+- epi155Block: epi stands for Ethereum Improvement Proposal, where developers propose ideas on how to improve Ethereum and contribute to this project
+- difficulty: mining difficulty // set this value low so you don’t have to wait too long for mining blocks
+- gasLimit: the limit of gas cost per block // set this value high to avoid being limited when testing
+- alloc: pre-funded address, the first parameter of each is the address . Need to be a 40 digits hex string(160 bit, one hex digit is 4 bit). Note that this does not create an account
+{{% /note %}}
+
 ---
 
 ### Initialize the Ethereum Node
 
 - The init command initializes a new genesis block and definition for the network.
 - You only need to run this command once.
-
 ```bash
-~/EthereumInfrastructure/go-ethereum/build/cmd/geth init ~/EthereumInfrastructure/private/genesis.json --datadir ~/EthereumInfrastructure/private/
+geth init ~/EthereumInfrastructure/private/genesis.json --datadir ~/EthereumInfrastructure/private/
 ```
 
 ---
@@ -375,15 +405,31 @@ INFO [11-17|23:59:42.875] Saved genesis chain spec                 client=harmon
 
 Export your ethereum address
 ```bash
-ETH_ADDRESS="1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb"
+export ETH_ADDRESS="1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb"
 ```
 
 Use the ETH_ADDRESS to start geth
 ```
-~/EthereumInfrastructure/go-ethereum/build/cmd/geth --keystore ~/EthereumInfrastructure/private/keystore --networkid 1234 --unlock ${ETH_ADDRESS} --password ~/EthereumInfrastructure/private/keystore/.passphrase --datadir ~/EthereumInfrastructure/private/ --cache 1024 --port "30303" --rpc --rpcport 8545 --rpcaddr "0.0.0.0" --rpcvhosts "*" --rpccorsdomain "*" --targetgaslimit '800000000' --allow-insecure-unlock
+geth --keystore ~/EthereumInfrastructure/private/keystore --networkid 1234 --unlock ${ETH_ADDRESS} --password ~/EthereumInfrastructure/private/keystore/.passphrase --datadir ~/EthereumInfrastructure/private/ --cache 1024 --port "30303" --rpc --rpcport 8545 --rpcaddr "0.0.0.0" --rpcvhosts "localhost" --rpccorsdomain "*" --targetgaslimit '800000000' --allow-insecure-unlock
 ```
 
 Geth should be running now
+
+{{% note %}}
+--keystore value: Directory for the keystore (default = inside the datadir)
+--networkid value: Network identifier (integer, 1=Frontier, 2=Morden (disused), 3=Ropsten, 4=Rinkeby) (default: 1)
+--unlock value: Comma separated list of accounts to unlock
+--password value: Password file to use for non-interactive password input
+--datadir value: Data directory for the databases and keystore (default: "/home/ligi/.ethereum")
+--cache value: Megabytes of memory allocated to internal caching (default = 4096 mainnet full node, 128 light mode) (default: 1024)
+--port value: Network listening port (default: 30303)
+--rpc: Enable the HTTP-RPC server
+--rpcvhosts value: Comma separated list of virtual hostnames from which to accept requests (server enforced). Accepts '*' wildcard. (default: "localhost")
+--rpcaddr value: HTTP-RPC server listening interface (default: "localhost")
+--rpccorsdomain value: Comma separated list of domains from which to accept cross origin requests (browser enforced)
+--targetgaslimit value: Target gas floor for mined blocks (deprecated, use --miner.gastarget) (default: 8000000)
+--allow-insecure-unlock: Allow insecure account unlocking when account-related RPCs are exposed by http
+{{% /note %}}
 
 ---
 
@@ -391,7 +437,7 @@ Geth should be running now
 
 In another terminal window, attach the geth.ipc socket
 ```
-$ ~/EthereumInfrastructure/go-ethereum/build/cmd/geth attach ~/EthereumInfrastructure/private/geth.ipc
+$ geth attach ~/EthereumInfrastructure/private/geth.ipc
 Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
@@ -426,9 +472,9 @@ at block: 0 (Sun, 17 Nov 2019 23:50:19 PST)
 ```bash
 curl -X GET -H "Content-Type: application/json" localhost:8545 --data '{"jsonrpc":"2.0","method":"eth_blockNumber", "params":[], "id":67 }'
 
-curl -X GET -H "Content-Type: application/json" seth-miner.staging.springlabs.network:8545 --data '{"jsonrpc":"2.0","method":"eth_blockNumber", "params":[], "id":67 }' | jq -r '.result' | xargs -n1 printf '%d\n',
+curl -X GET -H "Content-Type: application/json" localhost:8545 --data '{"jsonrpc":"2.0","method":"eth_blockNumber", "params":[], "id":67 }' | jq -r '.result' | xargs -n1 printf '%d\n',
 
-curl -X GET -H "Content-Type: application/json" prod-dcl-seth.springlabs.network:8545 --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount", "params":['0x4129ade4f41099236c96FEa46eA7413fE60c3B41'], "id":67 }'
+curl -X GET -H "Content-Type: application/json" localhost:8545 --data '{"jsonrpc":"2.0","method":"eth_getTransactionCount", "params":['0x4129ade4f41099236c96FEa46eA7413fE60c3B41'], "id":67 }'
 ```
 
 {{% note %}}
@@ -441,7 +487,7 @@ https://github.com/ethereum/wiki/wiki/JSON-RPC
 
 After your ethereum node has initialized
 ```
-$ ~/EthereumInfrastructure/go-ethereum/build/cmd/geth attach geth.ipc
+$ geth attach geth.ipc
 Welcome to the Geth JavaScript console!
 
 instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
