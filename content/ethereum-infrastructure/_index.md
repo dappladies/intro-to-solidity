@@ -1,4 +1,4 @@
-USERNAME--- 
+--- 
 draft: false
 title:  "Ethereum Infrastructure"
 outputs: ["Reveal"]
