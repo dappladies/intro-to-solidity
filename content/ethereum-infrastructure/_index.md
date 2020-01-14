@@ -1,4 +1,4 @@
---- 
+USERNAME--- 
 draft: false
 title:  "Ethereum Infrastructure"
 outputs: ["Reveal"]
@@ -262,7 +262,7 @@ geth --datadir ~/EthereumInfrastructure/private account new --password ~/Ethereu
 Use the puppeth binary to start the interact prompts and create a genesis file.
 
 ```bash
-$ ~/EthereumInfrastructure/go-ethereum/build/bin/puppeth
+$ puppeth
 +-----------------------------------------------------------+
 | Welcome to puppeth, your Ethereum private network manager |
 |                                                           |
@@ -281,7 +281,7 @@ Please specify a network name to administer (no spaces, hyphens or capital lette
 Sweet, you can set this via --network=myblockchain next time!
 
 INFO [11-17|23:49:34.296] Administering Ethereum network           name=myblockchain
-WARN [11-17|23:49:34.296] No previous configurations found         path=/Users/username/.puppeth/myblockchain
+WARN [11-17|23:49:34.296] No previous configurations found         path=/Users/USERNAME/.puppeth/myblockchain
 
 What would you like to do? (default = stats)
  1. Show network stats
@@ -413,7 +413,7 @@ Use the ETH_ADDRESS to start geth
 geth --keystore ~/EthereumInfrastructure/private/keystore --networkid 1234 --unlock ${ETH_ADDRESS} --password ~/EthereumInfrastructure/private/keystore/.passphrase --datadir ~/EthereumInfrastructure/private/ --cache 1024 --port "30303" --rpc --rpcport 8545 --rpcaddr "0.0.0.0" --rpcvhosts "localhost" --rpccorsdomain "*" --targetgaslimit '800000000' --allow-insecure-unlock
 ```
 
-Geth should be running now
+Geth should be running now.
 
 {{% note %}}
 --keystore value: Directory for the keystore (default = inside the datadir)
@@ -443,7 +443,7 @@ Welcome to the Geth JavaScript console!
 instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
 coinbase: 0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb
 at block: 0 (Sun, 17 Nov 2019 23:50:19 PST)
- datadir: /Users/username/Documents/git/ethereum_infrastructure/private
+ datadir: /Users/USERNAME/Documents/git/ethereum_infrastructure/private
  modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
 > web3.eth.coinbase
@@ -493,7 +493,7 @@ Welcome to the Geth JavaScript console!
 instance: Geth/v1.9.8-unstable-9e71f55b-20191117/darwin-amd64/go1.13.4
 coinbase: 0x1618dca59ff9aefe8bdd4e8887e7e06a8078bcfb
 at block: 0 (Sun, 17 Nov 2019 23:50:19 PST)
- datadir: /Users/username/Documents/git/ethereum_infrastructure/private
+ datadir: /Users/USERNAME/Documents/git/ethereum_infrastructure/private
  modules: admin:1.0 clique:1.0 debug:1.0 eth:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
 
 > admin.nodeInfo.enode
@@ -509,7 +509,7 @@ Enodes are shared amongst peers to tell nodes how to connect to each other.
 Get the geth process ID
 ```bash
 $ ps aux | grep geth
-username           PROCESS_ID   0.0  0.0  4408544    764 s001  S+   10:15PM   0:00.00 geth ...
+USERNAME           PROCESS_ID   0.0  0.0  4408544    764 s001  S+   10:15PM   0:00.00 geth ...
 ```
 
 Use the process ID to stop the geth process
