@@ -39,13 +39,13 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .line {
   content: '';
   position: fixed;
-  background: #F96167;
+  background: #000000;
   z-index: 105; }
   .line.top {
     left: 0;
     top: 0;
     width: 100%;
-    height: 30px; }
+    height: 20px; }
     @media (max-width: 840px) {
       .line.top {
         height: 15px; } }
@@ -54,14 +54,14 @@ section.has-light-background, section.has-light-background h1, section.has-light
     top: auto;
     bottom: 0;
     width: 100%;
-    height: 30px; }
+    height: 20px; }
     @media (max-width: 840px) {
       .line.bottom {
         height: 15px; } }
   .line.left {
     left: 0;
     top: 0;
-    width: 30px;
+    width: 20px;
     height: 200%; }
     @media (max-width: 840px) {
       .line.left {
@@ -70,7 +70,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
     left: auto;
     right: 0;
     top: 0;
-    width: 30px;
+    width: 20px;
     height: 200%; }
     @media (max-width: 840px) {
       .line.right {
@@ -314,7 +314,7 @@ body {
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
-  border-color: #F96167;
+  border-color: #000000;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
 
 /*********************************************
