@@ -4,8 +4,9 @@ title:  "Intro To Solidity"
 outputs: ["Reveal"]
 ---
 
-# Welcome!
-Intro To Solidity
+# Intro To Solidity
+
+Taught by: Kseniya Lifanova
 
 ![](./../images/solidity.png)
 
@@ -13,7 +14,7 @@ Intro To Solidity
 
 ### Agenda
 - Introduction
-- Blockchain basics
+- History & Blockchain Basics
 - Ethereum
 - Dev Tools
 - Smart Contract code
@@ -38,8 +39,9 @@ Intro To Solidity
 - David Chaum: Digicash, Dr. Adam Back: Hashcash, Wei Dai: B-Money
 
 {{% note %}}
-- mailing list where they exchanged ideas and talked dev
 - The basic ideas behind this movement can be found in the Cypherpunk manifesto written by Eric Hughes in 1993. The key principle which underpins the manifesto, is the importance of privacy. One can see this and other principles discussed in the manifesto being used to build the ideas that support some of the largest cryptocurrencies today.
+
+- mailing list where they exchanged ideas and talked dev
 {{% /note %}}
 
 ---
@@ -57,10 +59,16 @@ In November 2008, Satoshi Nakamoto published a whitepaper titled [Bitcoin: A Pee
 ---
 
 ### Blockchain
-A blockchain is a time-stamped series of immutable records of data that is managed by a cluster of computers, not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. You can think of this blockchain as a ledger, which can be shared and accessed by anyone with the appropriate permissions.
+A blockchain is a time-stamped series of immutable records of data that is managed by a cluster of computers, not owned by any single entity. Each of these blocks of data are secured and chained to each other using a cryptographic signature. 
+
+You can think of this blockchain as a ledger, which can be shared and accessed by anyone.
 
 {{% note %}}
 - anyone is free to download the ledger on their computer and join the network, the transaction history is open for everyone to see
+
+- data are secured and chained to each other using a cryptographic signature: CALLED MINING
+transactions are bunched together to form a block, and computers race to solve a mathematical puzzle to verify the transactions, seal the block, and record it on their ledgers
+- the puzzle is to solve for a cryptographic hash...inputs are previous blocks, new transactions 
 {{% /note %}}
 
 ---
@@ -121,6 +129,7 @@ All these computers (also called nodes) are connected to one another and run the
 
 ### Proof of Work and Mining
 - Ethereum currently uses a system called “Proof of Work”. This allows the Ethereum network to agree on the state of all information recorded on the Ethereum blockchain, and prevents certain kinds of economic attacks.
+
 - ETH 2.0, Ethereum will be moving to a different system called “Proof of Stake”
 
 {{% note %}}
@@ -149,6 +158,22 @@ Code: In Ethereum world, you write the logic/application code (called contract) 
 {{% /note %}}
 
 ---
+
+### Gas
+
+Ethereum Gas is a unit that measures the amount of computational effort that will take to execute certain operations.
+
+Every single operation that takes part in Ethereum, be it a transaction or smart contract execution requires some amount of gas.
+
+Miners get paid an amount in Ether which is equivalent to the total amount of gas it took them to execute a complete operation.
+
+{{% note %}}
+
+{{% /note %}}
+
+
+---
+
 
 ![](./../images/dappladies/smart-contract.jpg)
 
@@ -194,20 +219,13 @@ The EVM runs as a local instance on every Ethereum node, but because all instanc
 
 ---
 
-### Gas
-
-{{% note %}}
-
-{{% /note %}}
-
----
-
 ### Tools
 - Remix
 - Truffle Suite
 - Parity & Geth
 - Test networks
 - MetaMask
+- Openzeppelin
 
 {{% note %}}
 
@@ -243,7 +261,8 @@ Ganache- in-memory blockchain
 ### Test Networks
 - **Ropsten**: the one that most resembles the main network, uses Proof of Work consensus algorithm 
 - **Rinkeby**: uses Proof of Authority consensus algorithm, you need to prove your existence in order to retrieve ethers
-- **Kovan**: uses same consensus algorithm as Rinkeby
+- **Kovan**: Proof of Authority
+- **Gorli**: Proof of Authority
 
 {{% note %}}
 Test networks exist to ease development and provide developers and companies an easy solution to deliver their product on networks that are not exchanging real value but providing the exact same service.
@@ -280,6 +299,20 @@ https://metamask.io/
 
 ---
 
+![](./../images/openzeppelin.svg)
+
+Provides tools to write, deploy and operate decentralized applications
+
+https://openzeppelin.com/
+
+{{% note %}}
+- A library of modular, reusable, secure smart contracts for the Ethereum network, written in Solidity.
+- an SDK
+- audits
+{{% /note %}}
+
+---
+
 ### Let's Look at some code
 ![](./../images/dappladies/token.png)
 
@@ -308,19 +341,25 @@ contract MyContract {
 
 ### Constructor
 
+The constructor function is a special function that is used to initialize state variables of a contract
+
 ```
 pragma solidity ^0.6.0;
 
 contract MyContract {
+   uint data;
 
+   constructor(uint _data) public {
+      data = _data;   
+   }
 
 }
 
+```
 {{% note %}}
-
+A constructor code is executed once when a contract is created and it is used to initialize contract state.
 
 {{% /note %}}
-```
 
 ---
 
@@ -347,12 +386,13 @@ contract MyContract {
 
 }
 
+```
+
 {{% note %}}
 use bytes for arbitrary-length raw byte data
 use string for arbitrary-length string (UTF-8) data
 
 {{% /note %}}
-```
 
 ---
 
@@ -568,6 +608,7 @@ contract MyContract {
 ---
 
 ### Require
+A prerequisite check of the function
 ```
 pragma solidity ^0.6.0;
 
@@ -597,7 +638,6 @@ require can be used to check for conditions and throw an exception if the condit
 ---
 
 ### Modifiers
-Modifier are like a prerequisites check of the function
 ```
 pragma solidity ^0.6.0;
 
@@ -644,8 +684,8 @@ contract Ownable {
 
 contract MyContract is Ownable {
 
-  uint public userAge;
-  uint public userName;
+  uint256 public userAge;
+  string public userName;
 
   function addUser(string name, uint256 age) public {
     userAge = age;
@@ -661,8 +701,9 @@ contract MyContract is Ownable {
 
 ---
 
-### Public vs Private
+### Public vs Private vs Internal vs External
 **Public**: anyone or any contract can call your contract's function
+
 **Private**: only a function in the contract can call the function
 
 ```
@@ -670,14 +711,14 @@ pragma solidity ^0.6.0;
 
 contract MyContract {
 
-  uint private _userAge;
+  uint256 private _userAge;
   string private _userName;
 
-  function addUser(string _name, uint _age) public {
-    _addUser(_name, _age)
+  function addUser(string name, uint256 age) public {
+    _addUser(name, age)
   }
 
-  function _addUser(string _name, uint _age) private {
+  function _addUser(string _name, uint256 _age) private {
     _userAge = _age;
     _userName = _name;
   }
@@ -693,11 +734,9 @@ contract MyContract {
 ---
 
 ### Internal vs External
-`private, public, internal, external`
+**External**- similar to public, except these functions can ONLY be called outside the contract.
 
 **Internal**- the same as private, except it's also accessible to contract that inherit from this contract.
-
-**External**- similar to public, except these functions can ONLY be called outside the contract.
 
 {{% note %}}
 For declaring internal or external functions, the syntax is the same as private and public
@@ -715,6 +754,7 @@ contract Ownable {
   function setOwner() internal {
     owner = msg.sender;
   }
+
 }
 
 contract MyContract is Ownable {
@@ -722,9 +762,9 @@ contract MyContract is Ownable {
   uint public userAge;
   uint public userName;
   
-  function addUser(string _name, uint _age) public {
-    userAge = _age;
-    userName = _name;
+  function addUser(string name, uint256 age) public {
+    userAge = age;
+    userName = name;
   }
   // we can call this function
   setOwner();
@@ -739,8 +779,12 @@ contract MyContract is Ownable {
 ```
 git clone https://github.com/dappladies/su-token.git
 npm i
+truffle test
 
 ```
+
+Open another tab in your terminal and run `ganache-cli`
+
 ---
 
 ![](./../images/meme.jpg)
@@ -775,6 +819,7 @@ npm i
 - https://medium.com/coinmonks/ethereum-test-networks-69a5463789be
 - https://blockgeeks.com/guides/what-is-blockchain-technology/
 - https://cryptozombies.io/en/course
+- https://blockgeeks.com/guides/ethereum-gas/
 
 
 
